@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Media;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $files= Media::all();
+    return view('welcome',['files'=>$files]);
 });
 
 Auth::routes();
