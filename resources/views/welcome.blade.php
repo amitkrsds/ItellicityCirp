@@ -205,12 +205,12 @@
 
                 </div>
 
-                <div class="col-md-2 col-sm-4 feature-footer">
+                <div class="col-md-2 col-sm-4 feature-footer" >
 
 
 
                 </div>
-
+                <div style="color:white;">powered by @claim-bridge</div>
 
 
 

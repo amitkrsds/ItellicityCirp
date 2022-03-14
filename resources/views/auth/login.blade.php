@@ -224,6 +224,7 @@
 
 
                 </div>
+                <div style="color:white;">powered by @claim-bridge</div>
 
 
 
