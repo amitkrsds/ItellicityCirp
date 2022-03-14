@@ -10,13 +10,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Virtual Data Room (VDR) Guide: Everything You Need to Know</title>
-
-    <meta content="Everything You Need to Know about virtual data room when you use FirmsData virtual data room." name="description" />
-
-    <meta name="google-site-verification" content="MhsxqiEVbM3Vr_Usx-9GAl18BdYX-ck27v7qO4J1Acc" />
-
-    <link rel="canonical" href="https://www.firmsdata.com/blog/virtual-data-room-vdr-guide-everything-you-need-to-know">
+    <title>CLaim bridge</title>
 
     <!-- CSS References -->
 
@@ -78,7 +72,7 @@
 
             <div class="row d-flex align-items-center">
 
-                <div class="col-sm-2 col-5"> <a href="https://www.firmsdata.com/firmsdata/" id="logo" data-tilt> <img src="../images/logo.png" /> </a> </div>
+                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a>  </div>
 
                 <div class="col-sm-6 col-1">
 
