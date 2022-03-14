@@ -20,14 +20,14 @@
 
     <!-- CSS References -->
 
-    <link rel=" stylesheet " href="{{url('/css/bootstrap.min.css')}} " />
+    <link rel=" stylesheet " href="{{url('../css/bootstrap.min.css')}} " />
 
 
-    <link rel="stylesheet " href="{{url('/css/header.css')}} " />
+    <link rel="stylesheet " href="{{url('../css/header.css')}} " />
 
-    <link rel="stylesheet " href="{{url('/css/footer.css')}} " />
+    <link rel="stylesheet " href="{{url('../css/footer.css')}} " />
 
-    <link rel="stylesheet " href="{{url('/css/blog.css')}} " />
+    <link rel="stylesheet " href="{{url('../css/blog.css')}} " />
 
     <!-- JS References -->
     <link rel="preconnect " href="https://fonts.googleapis.com ">
