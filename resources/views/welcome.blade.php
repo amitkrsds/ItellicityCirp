@@ -28,6 +28,7 @@
     <link rel="stylesheet " href="../css/footer.css " />
 
     <link rel="stylesheet " href="../css/blog.css " />
+    <link rel="stylesheet " href="{{ur('/')}} " />
 
     <!-- JS References -->
     <link rel="preconnect " href="https://fonts.googleapis.com ">
