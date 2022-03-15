@@ -1,7 +1,13 @@
     footer {
     background-image: linear-gradient(to bottom, #053036, #053036);
     /*clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);*/
-    padding: 6rem 0rem 2rem;
+    /*//padding: 6rem 0rem 2rem;*/
+        position: fixed;
+        padding: 10px 10px 0px 10px;
+        bottom: 0;
+        width: 100%;
+        /* Height of the footer*/
+        height: 100px;
 }
 
 p.footer-para {

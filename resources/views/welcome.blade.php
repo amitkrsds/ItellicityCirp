@@ -22,6 +22,7 @@
     <link rel="stylesheet " href="{{url('../css/footer.css')}} " />
 
     <link rel="stylesheet " href="{{url('../css/blog.css')}} " />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- JS References -->
     <link rel="preconnect " href="https://fonts.googleapis.com ">
@@ -157,11 +158,14 @@
     <tr>
         <th>#</th>
         <th>Files</th>
+        <th><i class="fa fa-download"></i></th>
     </tr>
     @foreach($files as $file)
         <tr>
             <td>{{$file->id}}</td>
-            <td>{{$file->name}}</td>
+            <td>{{$file->name}}
+            <td>  <a href="{{url('download',[$file->id])}}"><i class="fa fa-download"></i></a></td>
+
         </tr>
     @endforeach
 </table>
@@ -223,6 +227,7 @@
 
 </footer>
 <style>
+
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;

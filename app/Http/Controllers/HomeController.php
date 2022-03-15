@@ -31,19 +31,31 @@ class HomeController extends Controller
 
     public function uploadFiles(Request $request)
     {
+        if($request->fileToUpload == null){
+            return redirect()->back()->withErrors('Please select files');
+        }
         foreach ($request->fileToUpload as $file){
             $originalFile = $file->getClientOriginalName();
             $time = microtime('.') * 10000;
             $filename=$time.$originalFile;
-            $destinationPath = storage_path('app/polls/');
+            $destinationPath = storage_path('app/files/');
             $file->move($destinationPath,$filename);
             Media::create([
                 'name'=>$originalFile,
-                'full_path'=>$destinationPath,
+                'full_path'=>$filename,
                 'user_id'=>Auth::id()
             ]);
         }
          return redirect()->route('home')->with('success','File uploaded successfully');
 
     }
+
+    public function deleteFiles(Media $media){
+        $file=storage_path('app/files/'.$media->full_path);
+        unlink($file);
+        $media->delete();
+        return redirect()->back()->with('success','File deleted successfully');
+    }
+
+
 }

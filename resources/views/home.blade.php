@@ -23,6 +23,7 @@
 
     <link rel="stylesheet " href="{{asset('../css/blog.css')}} " />
     <link rel="stylesheet " href="{{asset('../css/common.css')}} " />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <!-- JS References -->
@@ -154,7 +155,10 @@
 
 <section id="blogs">
 
+
     <div class="page-section pb-0 blogs-block">
+
+        @include('layouts.flash')
 
         <div class="container">
 
@@ -198,11 +202,23 @@
                         <tr>
                             <th>#</th>
                             <th>Files</th>
+                            <th>Action</th>
+                            <th><i class="fa fa-download"></i></th>
                         </tr>
                         @foreach($files as $file)
                             <tr>
                                 <td>{{$file->id}}</td>
                                 <td>{{$file->name}}</td>
+                                <th><form method="post" onsubmit="return confirm('Do you really want to delete this file?');"
+                                          action="{{url('delete-files',[$file->id])}}">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-danger float-right"><i class="fa fa-trash"></i>
+                                            Delete file</button>
+                                    </form>
+                                </th>
+                                <td>
+                                    <a href="{{url('download',[$file->id])}}"><i class="fa fa-download"></i></a></td>
                             </tr>
                         @endforeach
                     </table>

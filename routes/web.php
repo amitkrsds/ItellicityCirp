@@ -24,3 +24,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/upload-files', [App\Http\Controllers\HomeController::class, 'uploadFiles']);
+Route::delete('/delete-files/{media}', [App\Http\Controllers\HomeController::class, 'deleteFiles']);
+Route::get('/download/{media}', [App\Http\Controllers\Controller::class, 'downloadFile']);
