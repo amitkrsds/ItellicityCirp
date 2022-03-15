@@ -1,0 +1,581 @@
+#hero {
+    position: relative;
+}
+
+.banner-section {
+    background: url(".././images/updated_bg.png") no-repeat center top;
+    background-size: cover;
+    min-height: 120vh;
+    /*clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);*/
+    /*background-attachment: fixed;*/
+    padding-top: 19.5rem;
+}
+
+.gyde-analytics-holder {
+    min-height: calc(100vh - 89px);
+}
+
+.banner-content h1 {
+    font-size: 3.75rem;
+    font-size: 44px;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+    /*margin-top: 225px;*/
+}
+
+.banner-content-holder h1 span {
+    color: #fcbf38;
+    /*font-weight: 300 !important;
+            font-size: 40px;*/
+}
+span.usecase-icon.d-flex.align-items-center.justify-content-center {
+    background: #FCBF38;
+}
+.banner-content p.text-large {
+    font-weight: 300 !important;
+}
+
+.banner-btn {
+    margin-top: 2.188rem;
+}
+
+.banner-girl {
+    position: relative;
+    max-width: 40rem;
+    right: 0rem;
+    bottom: -6rem;
+    width: 100%;
+}
+
+.girl-overlap {
+    position: absolute;
+    top: 5.625rem;
+    right: 0;
+    width: 100%;
+}
+
+.banner-content .col-md-7 {
+    position: relative;
+    z-index: 999;
+}
+
+.banner-content-holder {
+    margin-top: -6rem;
+}
+
+
+/* About Gyde Section starts */
+
+
+/* Use cases section starts */
+
+#usecases>li>button.nav-link {
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    padding: 1.5rem;
+    color: #22252B;
+    font-weight: 500;
+    background-color: #fff;
+}
+
+#usecases>li>button.nav-link:hover {
+    border-bottom: 3px solid #FCBF38;
+}
+
+#usecases>li {
+    width: 19%;
+}
+
+#usecases>li>button.nav-link {
+    box-shadow: 0px 3px 6px rgba(98, 127, 214, 0.1);
+}
+
+#usecases>li>button.nav-link span {
+    display: block;
+}
+
+#usecases>li>.nav-link.active {
+    background-color: #fff;
+    color: #FCBF38;
+    border-bottom: 3px solid #FCBF38;
+}
+
+.usecase-icon {
+    display: inline-block;
+    width: 4.125rem;
+    height: 4.125rem;
+    border-radius: 50%;
+    margin: 0px auto 1rem;
+    background-color: #FAFAFF;
+}
+
+.usecase-icon i {
+    font-size: 2rem;
+    background: -webkit-linear-gradient(#fcbf38, #fcbf38);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3;
+}
+
+#usecases>li>.nav-link.active .usecase-icon {
+    background-color: #FCBF38;
+}
+
+#usecases>li>.nav-link.active .usecase-icon i {
+    background: unset;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    color: #fff;
+}
+
+.values-container {
+    padding: 2.25rem;
+    border-radius: 1rem;
+    box-shadow: 0px 3px 60px rgb(98 127 214 / 10%);
+    margin-top: 2rem;
+    width: 100%;
+    height: 500px;
+    background-color: #fff;
+}
+
+.hashtag {
+    padding: 1rem;
+    background-color: #F6F8FF;
+    color: #FCBF38;
+    font-weight: 500;
+    font-size: 1rem;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+h2.value-title {
+    font-size: 2.375rem;
+    color: #22252B;
+    margin-bottom: 35px;
+    margin-top: 20px;
+}
+
+button.according-para {
+    padding: 5px 20px 5px 20px;
+    border: 1px solid #F6F8FF;
+    background: #F6F8FF;
+    border-radius: 0px 10px 0px 10px;
+}
+
+.value-title span {
+    display: block;
+    color: #40495D;
+    font-weight: 400;
+}
+
+.value-img {
+    max-width: 100%;
+    border-radius: 16px;
+}
+
+.tab-pane .custom-accordian-header {
+    display: none;
+}
+
+.custom-accordian-body {
+    padding: 0px;
+}
+
+
+/* Pre Built Gydes Section CSS */
+
+#preBuilt-gydes {
+    /*margin-top: -22rem;*/
+    margin-top: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+.preBuilt-gydes {
+    flex-wrap: wrap;
+    /* background: url(".././images/dotted-grid.png") no-repeat 51% 48%;*/
+    background-size: 50%;
+}
+
+.prebuilt-gydes-block {
+    width: 48%;
+    padding: 1.875rem;
+    border-radius: 8px;
+    box-shadow: 0px 3px 40px rgba(98, 127, 214, 0.16);
+    margin-bottom: 1.6rem;
+    background-color: #fff;
+}
+
+.prebuilt-gydes-block img {
+    display: block;
+    margin: 0px auto 1rem auto;
+    max-width: 100%;
+}
+
+.prebuilt-gydes-block h3 {
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+    color: #22252B;
+}
+
+.prebuilt-gydes-block p {
+    line-height: 1.4;
+}
+
+.prebuilt-gydes-holder {
+    width: 48%;
+}
+
+.request-demo-section {
+    width: 48%;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0px 3px 40px rgba(98, 127, 214, 0.16);
+    margin-bottom: 1.6rem;
+    padding: 1rem;
+}
+
+.request-demo-content {
+    max-width: 350px;
+}
+
+.request-demo-content img {
+    max-width: 5rem;
+    margin-bottom: 1rem;
+}
+
+.request-demo-content h3 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #1C2E7C;
+    margin-bottom: 0.5rem;
+}
+
+
+/* Blogs Section CSS */
+
+.blogs-header {
+    margin-bottom: 2rem;
+}
+
+.blogs-header h1.section-title {
+    margin-bottom: 0px;
+}
+
+.line-divider {
+    width: 20%;
+    height: 1px;
+    border-top: 1px solid #DFE1EB;
+    position: absolute;
+    top: 50%;
+}
+ul.list-para{
+    text-align: left;
+    margin-top: 30px;
+    padding-left: 50px;
+    color:#40495d
+}
+
+.rightPositioned {
+    right: 0;
+}
+
+.leftPositioned {
+    left: 0;
+}
+
+.blog-block {
+    width: 32%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.blog-block img {
+    width: 100%;
+    transition: all 0.3s ease-in;
+}
+
+.blog-info-overlay {
+    position: absolute;
+    bottom: -4rem;
+    left: 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease-in;
+}
+
+.blog-info {
+    position: absolute;
+    left: 10%;
+    bottom: 1rem;
+    width: 80%;
+}
+
+.blog-info h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-info p {
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-block:hover .blog-info-overlay {
+    bottom: 0;
+}
+
+.blog-block:hover img {
+    transform: scale(1.2);
+}
+
+
+/* Media Query */
+
+@media screen and (max-width:1200px) {
+    .rightTop-circle {
+        right: -2rem;
+    }
+    .banner-section {
+        min-height: 100vh;
+    }
+    .banner-girl {
+        max-width: 35rem;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .rightTop-circle {
+        right: -1rem;
+    }
+}
+
+@media screen and (max-width:992px) {
+    /* .banner-content .d-flex {
+                display: block !important;
+            } */
+    .banner-content h1 {
+        font-size: 3rem;
+    }
+    .text-large {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .banner-section {
+        min-height: 65vh;
+    }
+    .gyde-analytics-holder {
+        min-height: calc(65vh - 89px);
+    }
+    .girl-overlap {
+        top: 50%;
+        text-align: center;
+        transform: translate(0px, -50%);
+    }
+    .value-img {
+        width: 100%;
+    }
+    .values-container {
+        width: 100%;
+    }
+    .leftBottom-circle {
+        left: -1.5rem;
+    }
+    #sideStretch-section {
+        display: block !important;
+    }
+    .prebuilt-gydes-holder,
+    .section-image {
+        width: 100%;
+    }
+    .company-logo {
+        left: 0;
+        border-radius: 0px 8px 8px 0px;
+    }
+    .section-image {
+        margin-bottom: 2rem;
+    }
+    .banner-content-holder {
+        margin-top: 0px;
+    }
+    #pageBody {
+        padding: 0px;
+    }
+    #usecases>li>button.nav-link {
+        padding: 0.5rem;
+    }
+    .blog-info {
+        width: 100%;
+        left: 0;
+        padding: 0px 1rem;
+    }
+    #usecases {
+        display: none !important;
+    }
+    .tab-content>.tab-pane {
+        display: block;
+        opacity: 1;
+    }
+    .values-container {
+        border-radius: unset;
+        box-shadow: unset;
+        margin-top: unset;
+        background-color: unset;
+    }
+    .custom-accordian {
+        border-radius: 1rem;
+        box-shadow: 0px 3px 60px rgb(98 127 214 / 10%);
+        margin-top: 1rem;
+        background-color: #fff;
+    }
+    .custom-accordian.active .custom-accordian-body {
+        display: block;
+    }
+    .tab-pane .custom-accordian-header {
+        display: block;
+        padding: 1.5rem;
+        font-size: 1.25rem;
+        color: #22252B;
+        font-weight: 500;
+        position: relative;
+    }
+    .custom-accordian-header::after {
+        content: "\eb21";
+        font-family: 'boxicons'!important;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 50%;
+        right: 1.5rem;
+        transform: translate(0%, -50%);
+    }
+    .custom-accordian-body {
+        padding: 1.5rem;
+        border-top: 1px solid #eee;
+        display: none;
+    }
+    .value-title span {
+        display: inline-block;
+    }
+    .values-container {
+        padding: 0;
+    }
+    h2.value-title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .banner-section {
+        min-height: 100vh;
+        background-size: auto;
+    }
+    .gyde-analytics-holder {
+        min-height: calc(100vh - 89px);
+    }
+    .card-pricing {
+   margin-top: 30px;
+    margin-left: 22px !important;
+    background-color: #fff;
+}
+.feature-footer {
+     margin-left: 0px!important;
+}
+p.footer-para {
+    color: #fff;
+    text-align: left;
+}
+p.form-subscribe {
+    text-align: left;
+}
+p.button-submit {
+    
+    margin-right: 10px;
+}
+p.footer-icon.margin-top-twenty {
+    margin-top: 15px;
+    text-align: left;
+}
+.col-md-4.card-Standart {
+   
+    margin-top: 30px!important;
+    
+  
+    margin-left: 23px!important;
+    
+}
+    .banner-girl,
+    .gyde-analytics-holder {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width:680px) {
+    .page-section .customBtn {
+        display: block;
+        width: fit-content;
+        margin: auto;
+        font-size: 1.25rem;
+    }
+    .custom-accordian-body p {
+        text-align: left;
+    }
+    #about-gyde {
+        margin-bottom: 3rem;
+    }
+    #about-gyde .page-section:first-child {
+        border-bottom: 1px solid #eee;
+        margin-bottom: 2rem;
+        margin-top: 40px;
+    }
+
+    .prebuilt-gydes-block,
+    .request-demo-section {
+        width: 100%;
+    }
+    #preBuilt-gydes .section-header {
+        text-align: center;
+    }
+    #preBuilt-gydes .section-header a {
+        margin-bottom: 1.25rem;
+    }
+    #preBuilt-gydes .section-header .d-flex {
+        display: block !important;
+    }
+    #preBuilt-gydes .section-header h1.section-title {
+        width: 100%;
+    }
+    .request-demo-section {
+        padding: 1.875rem;
+    }
+    .line-divider {
+        display: none;
+    }
+    .blog-block {
+        width: 100%;
+        margin-bottom: 2rem;
+        display: block;
+    }
+    .blogs-holder {
+        display: block !important;
+    }
+    .blog-info-overlay {
+        bottom: 0;
+    }
+    
+
+}

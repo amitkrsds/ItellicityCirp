@@ -14,15 +14,15 @@
 
     <!-- CSS References -->
 
-    <link rel=" stylesheet " href="{{url('css/bootstrap.min.css')}} " />
+    <link rel=" stylesheet " href="{{asset('../css/bootstrap.min.css')}} " />
 
 
-    <link rel="stylesheet " href="{{url('css/header.css')}} " />
+    <link rel="stylesheet " href="{{asset('../css/header.css')}} " />
 
-    <link rel="stylesheet " href="{{url('css/footer.css')}} " />
+    <link rel="stylesheet " href="{{asset('../css/footer.css')}} " />
 
-    <link rel="stylesheet " href="{{url('css/blog.css')}} " />
-    <link rel="stylesheet " href="{{url('css/common.css')}} " />
+    <link rel="stylesheet " href="{{asset('../css/blog.css')}} " />
+    <link rel="stylesheet " href="{{asset('../css/common.css')}} " />
 
 
     <!-- JS References -->
@@ -136,7 +136,7 @@
 
                         <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
 
-                            <h1 class="Blogs-heading"> Claim Bridge</h1>
+                            <h1 class="Blogs-heading">Pantel Technologies Private Limited(Under Liquidation)</h1>
 
                         </div>
 
