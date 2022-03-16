@@ -208,7 +208,7 @@
                         @foreach($files as $file)
                             @php $file_name=substr($file->name, 0, 40); @endphp
                             <tr>
-                                <td>{{$loop->itration}}</td>
+                                <td>{{$loop->iteration}}</td>
                                 <td>{{$file_name.'...'}}</td>
                                 <th><form method="post" onsubmit="return confirm('Do you really want to delete this file?');"
                                           action="{{url('delete-files',[$file->id])}}">

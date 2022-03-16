@@ -163,7 +163,7 @@
     @foreach($files as $file)
         @php $file_name=substr($file->name, 0, 40); @endphp
         <tr style="overflow: scroll;">
-            <td>{{$loop->itration}}</td>
+            <td>{{$loop->iteration}}</td>
             <td>{{$file_name.'...'}}
             <td>  <a href="{{url('download',[$file->id])}}"><i class="fa fa-download"></i></a></td>
 
