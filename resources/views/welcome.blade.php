@@ -126,7 +126,7 @@
 
                         <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
 
-                            <h1 class="Blogs-heading">Orbitol Intelligence Pvt Ltd(CIRP)</h1>
+                            <h1 class="Blogs-heading">SAHA Infratech Private Limited(CIRP)</h1>
 
                         </div>
 
