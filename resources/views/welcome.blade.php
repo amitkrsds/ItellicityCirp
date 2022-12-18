@@ -126,7 +126,7 @@
 
                         <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
 
-                            <h1 class="Blogs-heading">CirpGvkGoindwal</h1>
+                            <h1 class="Blogs-heading">Corporate Insolvency Resolution Process of GVK Power (Goindwal Sahib) Limited</h1>
 
                         </div>
 
