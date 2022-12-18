@@ -74,7 +74,7 @@
 
             <div class="row d-flex align-items-center">
 
-                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a>  </div>
+{{--                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a>  </div>--}}
 
                 <div class="col-sm-6 col-1">
 
