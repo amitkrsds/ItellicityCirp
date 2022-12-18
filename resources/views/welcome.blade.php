@@ -91,7 +91,7 @@
                                 @auth
                                     <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                                 @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                                    <a href="{{ route('register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
                                 @endauth
                             </div>
@@ -126,7 +126,7 @@
 
                         <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
 
-                            <h1 class="Blogs-heading">SAHA Infratech Private Limited(CIRP)</h1>
+                            <h1 class="Blogs-heading">CirpGvkGoindwal</h1>
 
                         </div>
 
@@ -142,35 +142,70 @@
 
 </section>
 
+{{--<section id="blogs">--}}
+
+{{--    <div class="page-section pb-0 blogs-block">--}}
+
+{{--        <div class="container">--}}
+
+{{--            <div class="col-md-12">--}}
+
+
+
+{{--                <div class="col-md-12">--}}
+
+{{--<table>--}}
+{{--    <tr>--}}
+{{--        <th>#</th>--}}
+{{--        <th>Files</th>--}}
+{{--        <th><i class="fa fa-download"></i></th>--}}
+{{--    </tr>--}}
+{{--    @foreach($files as $file)--}}
+{{--        @php $file_name=substr($file->name, 0, 40); @endphp--}}
+{{--        <tr style="overflow: scroll;">--}}
+{{--            <td>{{$loop->iteration}}</td>--}}
+{{--            <td>{{$file_name.'...'}}--}}
+{{--            <td>  <a href="{{url('download',[$file->id])}}"><i class="fa fa-download"></i></a></td>--}}
+
+{{--        </tr>--}}
+{{--    @endforeach--}}
+{{--</table>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 <section id="blogs">
 
     <div class="page-section pb-0 blogs-block">
 
         <div class="container">
+            <div class="row">
+                @foreach($categories as $category)
+                <div class="col-md-6">
+                    <h3>{{$category->name}}</h3>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Files</th>
+                            <th><i class="fa fa-download"></i></th>
+                        </tr>
+                        @foreach($category->files as $file)
+                                @php $file_name=substr($file->name, 0, 40); @endphp
+                                <tr style="overflow: scroll;">
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$file_name.'...'}}
+                                    <td>  <a href="{{url('download',[$file->id])}}"><i class="fa fa-download"></i></a></td>
 
-            <div class="col-md-12">
+                                </tr>
+                            @endforeach
 
 
 
-                <div class="col-md-12">
-
-<table>
-    <tr>
-        <th>#</th>
-        <th>Files</th>
-        <th><i class="fa fa-download"></i></th>
-    </tr>
-    @foreach($files as $file)
-        @php $file_name=substr($file->name, 0, 40); @endphp
-        <tr style="overflow: scroll;">
-            <td>{{$loop->iteration}}</td>
-            <td>{{$file_name.'...'}}
-            <td>  <a href="{{url('download',[$file->id])}}"><i class="fa fa-download"></i></a></td>
-
-        </tr>
-    @endforeach
-</table>
+                    </table>
                 </div>
+                @endforeach
+
             </div>
         </div>
     </div>

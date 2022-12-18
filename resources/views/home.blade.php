@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -137,7 +138,7 @@
 
                         <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
 
-                            <h1 class="Blogs-heading">SAHA Infratech Private Limited(CIRP)</h1>
+                            <h1 class="Blogs-heading">CirpGvkGoindwal</h1>
 
                         </div>
 
@@ -165,9 +166,23 @@
             <div class="col-md-12">
                 <div data-ix="fade-in-on-load-2" class="white-contact-form w-form" style="padding-top: 0px; opacity: 1; display: block; transition: opacity 500ms ease 0s;">
                     <h2 class="form-title subtitle">Upload here..</h2>
+                    <div class="">
+                       <a type="button" class="btn-send" href="{{url('category-create')}}">Add Category</a>
+                    </div>
+                    <div class="">
+                        <a type="button" class="btn-send" href="{{url('/category/show')}}">AllCategory</a>
+                    </div>
                     <div class="cpage-form">
                         <form action="{{url('upload-files')}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <div class="formfield">
+                                <label for="cars">Choose a category:</label>
+                                <select name="category_id">
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="formfield">
                                 <input type="file" name="fileToUpload[]" id="fileToUpload" multiple>
 
@@ -201,6 +216,7 @@
                     <table>
                         <tr>
                             <th>#</th>
+                            <th>Category</th>
                             <th>Files</th>
                             <th>Action</th>
                             <th><i class="fa fa-download"></i></th>
@@ -209,6 +225,7 @@
                             @php $file_name=substr($file->name, 0, 40); @endphp
                             <tr>
                                 <td>{{$loop->iteration}}</td>
+                                <td>{{$file->category}}</td>
                                 <td>{{$file_name.'...'}}</td>
                                 <th><form method="post" onsubmit="return confirm('Do you really want to delete this file?');"
                                           action="{{url('delete-files',[$file->id])}}">

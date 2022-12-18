@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Media;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,13 +17,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $files= Media::all();
-    return view('welcome',['files'=>$files]);
-});
 
+    $categories=Category::all();
+    foreach ($categories as $category){
+        $category->files=Media::where('category_id',$category->id)->get();
+    }
+    return view('welcome',['categories'=>$categories]);
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/upload-files', [App\Http\Controllers\HomeController::class, 'uploadFiles']);
 Route::delete('/delete-files/{media}', [App\Http\Controllers\HomeController::class, 'deleteFiles']);
 Route::get('/download/{media}', [App\Http\Controllers\Controller::class, 'downloadFile']);
+Route::get('/category-create', [App\Http\Controllers\HomeController::class, 'categoryCreate']);
+Route::post('/add-category', [App\Http\Controllers\HomeController::class, 'savecategory']);
+Route::get('/category/show', [App\Http\Controllers\HomeController::class, 'categoryDelete'])->name('category');
+Route::delete('/delete-category/{category}', [App\Http\Controllers\HomeController::class, 'deleteCategory']);

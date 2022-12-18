@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class
+HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,7 +28,19 @@ class HomeController extends Controller
     public function index()
     {
         $files= Media::where('user_id',Auth::id())->get();
-        return view('home',['files'=>$files]);
+        foreach ($files as $file){
+            $file->category=Category::find($file->category_id)->name;
+        }
+        $category=Category::all();
+        return view('home',['files'=>$files,'categories'=>$category]);
+    }
+
+    public function welcome(){
+        $catgories=Category::all();
+        foreach ($catgories as $category){
+            $catgories->files=Media::where('category_id',$category->id)->get();
+        }
+        return view('welcome',['categories'=>$catgories]);
     }
 
     public function uploadFiles(Request $request)
@@ -43,7 +57,8 @@ class HomeController extends Controller
             Media::create([
                 'name'=>$originalFile,
                 'full_path'=>$filename,
-                'user_id'=>Auth::id()
+                'user_id'=>Auth::id(),
+                'category_id'=>$request->category_id
             ]);
         }
          return redirect()->route('home')->with('success','File uploaded successfully');
@@ -56,6 +71,29 @@ class HomeController extends Controller
         $media->delete();
         return redirect()->back()->with('success','File deleted successfully');
     }
+
+    public function categoryCreate(){
+        return view('category-create');
+    }
+
+    public function savecategory(Request $request)
+    {
+        Category::create([
+            'name'=>$request->name
+        ]);
+        return redirect()->route('home')->with('success','Created successfully');
+    }
+
+    public function categoryDelete(){
+        $catgories=Category::all();
+        return view('category',['categories'=>$catgories]);
+    }
+
+    public function deleteCategory(Category $category){
+        $category->delete();
+        return redirect()->route('category')->with('success','Deleted successfully');
+    }
+
 
 
 }

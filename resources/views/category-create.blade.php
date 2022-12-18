@@ -10,19 +10,21 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Claim bridge</title>
+    <title>CLaim bridge</title>
 
     <!-- CSS References -->
 
-    <link rel=" stylesheet " href="{{asset('css/bootstrap.min.css')}} " />
+    <link rel=" stylesheet " href="{{asset('../css/bootstrap.min.css')}} " />
 
 
-    <link rel="stylesheet " href="{{asset('css/header.css')}} " />
+    <link rel="stylesheet " href="{{asset('../css/header.css')}} " />
 
-    <link rel="stylesheet " href="{{asset('css/footer.css')}} " />
+    <link rel="stylesheet " href="{{asset('../css/footer.css')}} " />
 
-    <link rel="stylesheet " href="{{asset('css/blog.css')}} " />
-    <link rel="stylesheet " href="{{asset('css/common.css')}} " />
+    <link rel="stylesheet " href="{{asset('../css/blog.css')}} " />
+    <link rel="stylesheet " href="{{asset('../css/common.css')}} " />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <!-- JS References -->
     <link rel="preconnect " href="https://fonts.googleapis.com ">
@@ -71,7 +73,7 @@
 
             <div class="row d-flex align-items-center">
 
-                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a> </div>
+                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a>  </div>
 
                 <div class="col-sm-6 col-1">
 
@@ -89,7 +91,16 @@
                         @if (Route::has('login'))
                             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                                 @auth
-                                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                                    <a href="#" class="text-sm text-gray-700 dark:text-gray-500 underline">{{Auth::user()->name}}</a><span style="color: blue;">/</span>
+                                    <li class="list-inline-item"> <a class="text-sm text-gray-700 dark:text-gray-500 underline" href="{{ route('logout') }}"
+                                                                     onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
                                 @else
                                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -144,38 +155,32 @@
 
 <section id="blogs">
 
+
     <div class="page-section pb-0 blogs-block">
+
+        @include('layouts.flash')
 
         <div class="container">
 
             <div class="col-md-12">
                 <div data-ix="fade-in-on-load-2" class="white-contact-form w-form" style="padding-top: 0px; opacity: 1; display: block; transition: opacity 500ms ease 0s;">
-                    <h2 class="form-title subtitle">Login here...</h2>
+                    <h2 class="form-title subtitle">Add Category</h2>
+                    <div class="">
+                        <a type="button" class="btn-send" href="{{url('/home')}}">Back</a>
+                    </div>
                     <div class="cpage-form">
-                        <form name="htmlform" method="post" action="{{ route('login') }}">
+                        <form action="{{url('add-category')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="formfield">
-                                <input id="email" type="email" placeholder="Enter your email.." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input type="text" name="name" placeholder="Enter Category name..." required>
 
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
                             </div>
 
-                            <div class="formfield">
-                                <input id="password" type="password" placeholder="Enter your password.." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
 
                             <div class="">
-                                <input type="submit" class="btn-send" value="submit">
+                                <input type="submit" class="btn-send" value="Submit">
                             </div>
                         </form>
                     </div>
@@ -184,7 +189,6 @@
         </div>
     </div>
 </section>
-
 <!-- Hero Section Ends -->
 
 <!-- Page blogs Section Starts -->
@@ -224,8 +228,8 @@
 
 
                 </div>
-                <div style="color:white;">powered by @claim-bridge</div>
 
+                <div style="color:white;">powered by @claim-bridge</div>
 
 
 
