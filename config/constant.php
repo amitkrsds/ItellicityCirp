@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'web_name'=>'Corporate Insolvency Resolution Process of GVK Power (Goindwal Sahib) Limited',
+    'web_name'=>'CIRP process of Intellicity Business Park Private Limited',
     'web_url'=>''
     ];
