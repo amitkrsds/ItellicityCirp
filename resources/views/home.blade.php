@@ -74,7 +74,7 @@
 
             <div class="row d-flex align-items-center">
 
-{{--                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a>  </div>--}}
+                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a>  </div>
 
                 <div class="col-sm-6 col-1">
 
@@ -138,7 +138,7 @@
 
                         <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
 
-                            <h1 class="Blogs-heading">Corporate Insolvency Resolution Process of GVK Power (Goindwal Sahib) Limited</h1>
+                            <h1 class="Blogs-heading">{{config('constant.web_name')}}</h1>
 
                         </div>
 

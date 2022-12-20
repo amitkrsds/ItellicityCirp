@@ -34,3 +34,11 @@ Route::get('/category-create', [App\Http\Controllers\HomeController::class, 'cat
 Route::post('/add-category', [App\Http\Controllers\HomeController::class, 'savecategory']);
 Route::get('/category/show', [App\Http\Controllers\HomeController::class, 'categoryDelete'])->name('category');
 Route::delete('/delete-category/{category}', [App\Http\Controllers\HomeController::class, 'deleteCategory']);
+Route::get('/category/show/{category}', function (Category $category) {
+    $files=Media::where('category_id',$category->id)->get();
+    return view('category-details',['categories'=>Category::all(),'category'=>$category,'files'=>$files]);
+});
+Route::get('about-us', function () {
+    $categories=Category::all();
+    return view('about-us',['categories'=>$categories]);
+});

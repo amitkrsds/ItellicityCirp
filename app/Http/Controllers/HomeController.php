@@ -38,7 +38,7 @@ HomeController extends Controller
     public function welcome(){
         $catgories=Category::all();
         foreach ($catgories as $category){
-            $catgories->files=Media::where('category_id',$category->id)->get();
+            $category->files=Media::where('category_id',$category->id)->get();
         }
         return view('welcome',['categories'=>$catgories]);
     }
@@ -92,6 +92,10 @@ HomeController extends Controller
     public function deleteCategory(Category $category){
         $category->delete();
         return redirect()->route('category')->with('success','Deleted successfully');
+    }
+
+    public function categoryShow(Category $category){
+         dd($category);
     }
 
 
