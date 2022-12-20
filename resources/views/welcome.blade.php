@@ -28,7 +28,7 @@
                 </button>
                 <a class="navbar-brand" href="#">
 
-                    <img src="img/bt-logo.png" class="img-responsive">
+                    <img src="{{asset('img/bt-logo.png')}}" class="img-responsive">
                 </a>
             </div>
 
@@ -65,7 +65,7 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="img/Banner0.png" class="banner-image-height">
+                        <img src="{{asset('img/banner0.png')}}" class="banner-image-height">
 
                         <!-- Static Header -->
                         <div class="header-text ">
