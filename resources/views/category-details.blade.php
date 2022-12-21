@@ -40,8 +40,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{url('/')}}">HOME</a></li>
 {{--                    <li><a href="{{url('about-us')}}">ABOUT US</a></li>--}}
-                    @foreach($categories as $category)
-                        <li><a href="{{url('category/show',[$category->id])}}">{{strtoupper($category->name)}}</a></li>
+                    @foreach($categories as $categori)
+                        <li><a href="{{url('category/show',[$categori->id])}}">{{strtoupper($categori->name)}}</a></li>
                     @endforeach
                     <li><a href="{{url('login')}}">LOGIN</a></li>
                 </ul>
