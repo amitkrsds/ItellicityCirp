@@ -1,267 +1,77 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Claim bridge</title>
-
-    <!-- CSS References -->
-
-    <link rel=" stylesheet " href="{{asset('css/bootstrap.min.css')}} " />
-
-
-    <link rel="stylesheet " href="{{asset('css/header.css')}} " />
-
-    <link rel="stylesheet " href="{{asset('css/footer.css')}} " />
-
-    <link rel="stylesheet " href="{{asset('css/blog.css')}} " />
-    <link rel="stylesheet " href="{{asset('css/common.css')}} " />
-
-    <!-- JS References -->
-    <link rel="preconnect " href="https://fonts.googleapis.com ">
-
-    <link rel="preconnect " href="https://fonts.gstatic.com " crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap "
-
-          rel="stylesheet ">
-
-    <!-- Icons References -->
-
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet' />
-
-    <link rel="stylesheet" href="../css/style.css">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4CKWRFHG3M"></script>
-
-    <script>
-
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag(){dataLayer.push(arguments);}
-
-        gtag('js', new Date());
-
-
-
-        gtag('config', 'G-4CKWRFHG3M');
-
-    </script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
-
 <body>
-
-<!-- Hero Section Starts -->
-
-<section id="hero">
-
-    <header data-aos="fade-down" data-aos-delay="100">
-
-        <div class="container" style="margin-top: -30px;">
-
-            <div class="row d-flex align-items-center">
-
-                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a> </div>
-
-                <div class="col-sm-6 col-1">
-
-                    <div class="mobileMneu-wrapper">
-
-
-
-                    </div>
-
-                </div>
-
-                <div class="col-sm-4 col-6">
-
-                    <ul class="list-inline d-flex  align-items-center justify-content-end" id="headerRight">
-                        @if (Route::has('login'))
-                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                @auth
-                                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                                @else
-
-                                    <a href="{{url('/')}}">back</a>/
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                                @endauth
-                            </div>
-                        @endif
-
-
-                    </ul>
-
-                </div>
-
-            </div>
-
+    <header class="site-header">
+        <div class="container navbar-shell">
+            <a class="brand" href="{{ url('/') }}" aria-label="Home">
+                <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
+            </a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ url('about-us') }}">About</a>
+            </nav>
+            <a href="{{ url('/') }}" class="nav-cta">Back</a>
         </div>
-
     </header>
 
-    <div class="banner-section">
+    <main>
+        <section class="section-shell">
+            <div class="container" style="display: grid; place-items: center; min-height: calc(100vh - 120px);">
+                <div class="form-card" style="width: min(520px, 100%);">
+                    <span class="section-tag">Welcome back</span>
+                    <h1 style="margin: 12px 0 20px; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--secondary); letter-spacing: -0.05em;">Login</h1>
+                    @include('layouts.flash')
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
 
-        <div class="gyde-analytics-holder d-flex align-items-center"> </div>
-
-    </div>
-
-    <div class="girl-overlap">
-
-        <div class="banner-content">
-
-            <div class="container">
-
-                <div class="row d-flex align-items-center">
-
-                    <div class="col-md-12">
-
-                        <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
-
-                            <h1 class="Blogs-heading">{{config('constant.web_name')}}</h1>
-
+                        <div class="field-group">
+                            <label for="email">Email address</label>
+                            <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="name@example.com" class="@error('email') is-invalid @enderror">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert" style="display:block; margin-top: 8px; color: #b91c1c; font-size: 0.88rem;">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
-                    </div>
+                        <div class="field-group">
+                            <label for="password">Password</label>
+                            <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="Enter your password" class="@error('password') is-invalid @enderror">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert" style="display:block; margin-top: 8px; color: #b91c1c; font-size: 0.88rem;">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
 
-                </div>
+                        <div class="form-actions" style="justify-content: space-between; align-items: center;">
+                            <label style="display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); font-size: 0.95rem;">
+                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                Remember me
+                            </label>
+                            <button type="submit" class="primary-btn">Login</button>
+                        </div>
+                    </form>
 
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section id="blogs">
-
-    <div class="page-section pb-0 blogs-block">
-
-        <div class="container">
-
-            <div class="col-md-12">
-                <div data-ix="fade-in-on-load-2" class="white-contact-form w-form" style="padding-top: 0px; opacity: 1; display: block; transition: opacity 500ms ease 0s;">
-                    <h2 class="form-title subtitle">Login here...</h2>
-                    <div class="cpage-form">
-                        <form name="htmlform" method="post" action="{{ route('login') }}">
-                            @csrf
-                            <div class="formfield">
-                                <input id="email" type="email" placeholder="Enter your email.." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="formfield">
-                                <input id="password" type="password" placeholder="Enter your password.." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="">
-                                <input type="submit" class="btn-send" value="submit">
-                            </div>
-                        </form>
+                    <div style="margin-top: 22px; text-align: center; color: var(--text-soft); font-size: 0.96rem;">
+                        Don’t have an account?
+                        <a href="{{ route('register') }}" style="color: var(--primary-dark); font-weight: 700;">Create one</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Hero Section Ends -->
-
-<!-- Page blogs Section Starts -->
-
-
-
-<!-- Page blogs Section end -->
-
-<!-- Start Virtual Data Room Section Starts -->
-
-
-
-<!-- Start Virtual Data Room Section end -->
-
-<!-- Footer Starts -->
-
-<footer>
-
-    <div class="container">
-
-        <div class="footer-top" data-aos="fade-up" data-aos-delay="300">
-
-            <div class="row">
-
-                <div class="col-md-3 col-sm-4">
-
-                    <div class="footer-links-block">
-
-
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-2 col-sm-4 feature-footer">
-
-
-
-                </div>
-                <div style="color:white;">powered by @claim-bridge</div>
-
-
-
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-</footer>
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-
-<!-- Footer Ends -->
-
-<!-- JS References -->
-
+        </section>
+    </main>
 </body>
-
 </html>
 

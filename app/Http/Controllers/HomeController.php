@@ -73,7 +73,7 @@ HomeController extends Controller
     }
 
     public function categoryCreate(){
-        return view('category-create');
+        return view('category-create', ['categories' => Category::all()]);
     }
 
     public function savecategory(Request $request)

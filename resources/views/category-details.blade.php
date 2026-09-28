@@ -1,329 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <title>Claim bridge</title>
-
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{asset('css1/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css1/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css1/style.css')}}" rel="stylesheet">
-    <link href="{{asset('css1/animate.css')}}" rel="stylesheet" type="text/css" media="screen">
-
-
+    <title>{{ $category->name }} | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
 <body>
+    <header class="site-header">
+        <div class="container navbar-shell">
+            <a class="brand" href="{{ url('/') }}" aria-label="Home">
+                <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
+            </a>
 
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="{{ url('/') }}">Home</a>
+                @foreach($categories as $navCategory)
+                    <a href="{{ url('category/show', [$navCategory->id]) }}" class="{{ $navCategory->id == $category->id ? 'is-active' : '' }}">{{ strtoupper($navCategory->name) }}</a>
+                @endforeach
+                <a href="{{ url('about-us') }}">About</a>
+            </nav>
 
-<div class="main-header">
-    <nav class="navbar navbar-inverse ">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-
-                    <img src="{{asset('img/bt-logo.png')}}" class="img-responsive">
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse js-navbar-collapse">
-
-
-
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{url('/')}}">HOME</a></li>
-{{--                    <li><a href="{{url('about-us')}}">ABOUT US</a></li>--}}
-                    @foreach($categories as $categori)
-                        <li><a href="{{url('category/show',[$categori->id])}}">{{strtoupper($categori->name)}}</a></li>
-                    @endforeach
-                    <li><a href="{{url('login')}}">LOGIN</a></li>
-                </ul>
-
-
-
-            </div><!-- /.nav-collapse -->
+            @auth
+                <a href="{{ url('/home') }}" class="nav-cta">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="nav-cta">Login</a>
+            @endauth
         </div>
-    </nav>
-</div>
+    </header>
 
-<section class="bradecome-detail">
-    <div class="container">
-        <div class="row bradcum">
-            <div class="col-md-12 ">
-                <ul>
-                    <li><a href="">HOME</a></li>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    <li><span id="">PUBLIC ANNOUNCEMENT</span></li>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </ul>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="blogs" class="wow  fadeInUp    animated">
-
-    <div class="page-section pb-0 blogs-block">
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>{{$category->name}}</h3>
-                    <table>
-                        <tr>
-                            <th>#</th>
-                            <th>Files</th>
-                            <th><i class="fa fa-download"></i></th>
-                        </tr>
-                        @foreach($files as $file)
-                            @php $file_name=substr($file->name, 0, 40); @endphp
-                            <tr style="overflow: scroll;">
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$file_name.'...'}}
-                                <td>  <a href="{{url('download',[$file->id])}}"><i class="fa fa-download"></i></a></td>
-
-                            </tr>
-                        @endforeach
-
-
-
-                    </table>
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-banner">
+                    <div class="breadcrumb">
+                        <a href="{{ url('/') }}">Home</a>
+                        <span>/</span>
+                        <span>{{ $category->name }}</span>
+                    </div>
+                    <h1>{{ $category->name }}</h1>
                 </div>
-
-
             </div>
-        </div>
+        </section>
 
+        <section class="section-shell">
+            <div class="container content-layout">
+                <div class="content-card">
+                    <span class="section-tag">Category files</span>
+                    @php
+                        $visibleFiles = $files->take(1);
+                        $hiddenFiles = $files->skip(1);
+                    @endphp
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Document name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($visibleFiles as $file)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td class="file-name"><a href="{{ route('file.view', ['media' => $file->id]) }}" style="color: var(--primary-dark); font-weight: 600;">{{ $file->name }}</a></td>
+                                        <td><a href="{{ route('file.view', ['media' => $file->id]) }}" class="inline-btn"><i class="fa-solid fa-eye"></i> View</a></td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3" style="text-align:center; color: var(--text-soft);">No files uploaded in this category yet.</td>
+                                    </tr>
+                                @endforelse
 
-    </div>
-</section>
-
-
-<footer id="footer" style="margin-top: 15px;">
-    <div class="container">
-        <div class="row">
-
-
-            <!--footer col-->
-
-            <!--footer col-->
-
-        </div>
-
-        <div class="row">
-
-
-            <div class="col-md-12 text-center">
-                <div class="footer-btm" style="color: white;"> <span>©All Rights Reserved © claim-bridge</span> </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
-<!--scripts and plugins -->
-<!--must need plugin jquery-->
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<!--bootstrap js plugin-->
-<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
-<!--easing plugin for smooth scroll-->
-<script src="{{asset('js/jquery.easing.1.3.min.js')}}" type="text/javascript"></script>
-<!--flex slider plugin-->
-<script src="{{asset('js/jquery.flexslider-min.js')}}" type="text/javascript"></script>
-
-<script src="{{asset('js/jquery.stellar.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/owl.carousel.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/jquery.magnific-popup.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/custom.js')}}" type="text/javascript"></script>
-<!--digit countdown plugin-->
-<script src="{{asset('js/waypoints.min.js')}}"></script>
-<script src="{{asset('js/jquery.counterup.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/wow.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/header-banner.js')}}"></script>
-
-
-
-<script type="text/javascript">
-    $(function () {
-        $('.easy-up a').bind('click', function (event) {
-            var $anchor = $(this);
-
-            $('html, body').stop().animate({
-                scrollTop: $($anchor.attr('href')).offset().top
-            }, 1500, 'easeInOutExpo');
-            /*
-            if you don't want to use the easing effects:
-            $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-            }, 1000);
-            */
-            event.preventDefault();
-        });
-    });
-</script>
-
-<!--easy click slider end-->
-
-
-<script>
-    $(document).ready(function(){
-        $(".dropdown").hover(
-            function() {
-                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-                $(this).toggleClass('open');
-            },
-            function() {
-                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-                $(this).toggleClass('open');
-            }
-        );
-    });
-</script><!--mega dropdown menu--------->
-
-
-
-
-
-<script>
-    $(document).ready(function(){
-        $('body').append('<div id="toTop" class="backtotop"><i class="fa fa-angle-up"></i></div>');
-        $(window).scroll(function () {
-            if ($(this).scrollTop() != 0) {
-                $('#toTop').fadeIn();
-            } else {
-                $('#toTop').fadeOut();
-            }
-        });
-        $('#toTop').click(function(){
-            $("html, body").animate({ scrollTop: 0 }, 600);
-            return false;
-        });
-    });
-
-</script><!--back to top button-->
-
-<style>
-</style>
-
-
-<div class="modal fade benosoft" id="login-pop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h3 class="modal-title text-center" id="lineModalLabel">Login to site.com</h3>
-                <p class="text-center">We are keen to know about your technology needs.</p>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 padding-zero">
-                        <div class="well">
-                            <form id="loginForm" method="POST" action="/login/" novalidate>
-                                <div class="form-group">
-                                    <label for="username" class="control-label" style="color: #000;">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="example@gmail.com">
-                                    <span class="help-block"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password" class="control-label" style="color: #000;">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password">
-                                    <span class="help-block"></span>
-                                </div>
-                                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" id="remember"> Remember login
-                                    </label>
-                                    <p class="help-block">(if this is a private computer)</p>
-                                </div>
-                                <button type="submit" class="btn btn-success btn-block">Login</button>
-                                <a href="/forgot/" class="btn btn-default btn-block">Help to login</a>
-                            </form>
-                        </div>
+                                @if($hiddenFiles->isNotEmpty())
+                                    @foreach($hiddenFiles as $file)
+                                        <tr class="extra-file-row" hidden>
+                                            <td>{{ $loop->iteration + $visibleFiles->count() }}</td>
+                                            <td class="file-name"><a href="{{ route('file.view', ['media' => $file->id]) }}" style="color: var(--primary-dark); font-weight: 600;">{{ $file->name }}</a></td>
+                                            <td><a href="{{ route('file.view', ['media' => $file->id]) }}" class="inline-btn"><i class="fa-solid fa-eye"></i> View</a></td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
 
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade benosoft" id="register-pop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h3 class="modal-title text-center" id="lineModalLabel">Register to site.com</h3>
-                <p class="text-center">We are keen to know about your technology needs.</p>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xs-12 padding-zero">
-                        <div class="well">
-                            <form id="loginForm" method="POST" action="/login/" novalidate>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="" name="" value="" required="" title="Please enter you Full Name" placeholder="Please enter you Full Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="" name="" value="" required="" title="Please enter your Email ID" placeholder="Please enter you Email ID">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="" name="" value="" required="" title="Please enter your password" placeholder="password">
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" id="" name="" value="" required="" title="Please enter your Email ID" placeholder="Phone Noumber">
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <select class="form-control" id="status" name="status" required>
-                                                <option>Country</option>
-                                                <option>xxx</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" id="remember"> Remember login
-                                    </label>
-                                    <p class="help-block">(if this is a private computer)</p>
-                                </div>
-                                <button type="submit" class="btn btn-success btn-block">Register</button>
-                            </form>
-
+                    @if($hiddenFiles->isNotEmpty())
+                        <div class="category-footer" style="margin-top: 18px;">
+                            <button type="button" class="show-more-btn" data-target="extra-file-row">Show more</button>
                         </div>
+                    @endif
+                </div>
 
-                        <p class="divider-text">
-                            <span class="bg-light">OR</span>
-                        </p>
-                        <p>
-                            <a href="" class="btn btn-block btn-twitter"> <i class="fa fa-twitter"></i> &nbsp; Login via Twitter</a>
-                            <a href="" class="btn btn-block btn-facebook"> <i class="fa fa-facebook-f"></i> &nbsp; Login via facebook</a>
-                        </p>
+                <aside class="info-panel">
+                    <span class="section-tag" style="color: rgba(255,255,255,0.7);">Overview</span>
+                    <h3 style="margin: 0 0 18px; font-size: 2rem; letter-spacing: -0.05em;">{{ $category->name }}</h3>
+                    <p>Browse the available documents and downloads for this section.</p>
+                    <ul>
+                        <li>{{ count($files) }} file(s) available</li>
+                        <li>Updated and organized by category</li>
+                        <li>Fast access for review and download</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+    </main>
 
-                    </div>
-
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
+                </div>
+                <div class="footer-links">
+                    <a href="{{ url('/') }}">Home</a>
+                    <a href="{{ url('about-us') }}">About</a>
+                    <a href="{{ route('login') }}">Login</a>
                 </div>
             </div>
-
+            <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>
-    </div>
-</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.show-more-btn').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var selector = this.getAttribute('data-target');
+                    var rows = document.querySelectorAll('.' + selector);
+                    rows.forEach(function (row) {
+                        var isHidden = row.hasAttribute('hidden');
+                        row.hidden = !isHidden;
+                    });
+                    this.textContent = this.textContent === 'Show more' ? 'Show less' : 'Show more';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

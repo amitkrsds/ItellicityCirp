@@ -1,296 +1,93 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CLaim bridge</title>
-
-    <!-- CSS References -->
-
-    <link rel=" stylesheet " href="{{asset('../css/bootstrap.min.css')}} " />
-
-
-    <link rel="stylesheet " href="{{asset('../css/header.css')}} " />
-
-    <link rel="stylesheet " href="{{asset('../css/footer.css')}} " />
-
-    <link rel="stylesheet " href="{{asset('../css/blog.css')}} " />
-    <link rel="stylesheet " href="{{asset('../css/common.css')}} " />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-    <!-- JS References -->
-    <link rel="preconnect " href="https://fonts.googleapis.com ">
-
-    <link rel="preconnect " href="https://fonts.gstatic.com " crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap "
-
-          rel="stylesheet ">
-
-    <!-- Icons References -->
-
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet' />
-
-    <link rel="stylesheet" href="../css/style.css">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4CKWRFHG3M"></script>
-
-    <script>
-
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag(){dataLayer.push(arguments);}
-
-        gtag('js', new Date());
-
-
-
-        gtag('config', 'G-4CKWRFHG3M');
-
-    </script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage categories | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
-
 <body>
+    <header class="site-header">
+        <div class="container navbar-shell">
+            <a class="brand" href="{{ url('/') }}" aria-label="Home">
+                <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
+            </a>
 
-<!-- Hero Section Starts -->
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="{{ url('/') }}">Home</a>
+                @foreach($categories as $categoryItem)
+                    <a href="{{ url('category/show', [$categoryItem->id]) }}">{{ strtoupper($categoryItem->name) }}</a>
+                @endforeach
+                <a href="{{ url('about-us') }}">About</a>
+            </nav>
 
-<section id="hero">
-
-    <header data-aos="fade-down" data-aos-delay="100">
-
-        <div class="container" style="margin-top: -30px;">
-
-            <div class="row d-flex align-items-center">
-
-                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a>  </div>
-
-                <div class="col-sm-6 col-1">
-
-                    <div class="mobileMneu-wrapper">
-
-
-
-                    </div>
-
-                </div>
-
-                <div class="col-sm-4 col-6">
-
-                    <ul class="list-inline d-flex  align-items-center justify-content-end" id="headerRight">
-                        @if (Route::has('login'))
-                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                @auth
-                                    <a href="#" class="text-sm text-gray-700 dark:text-gray-500 underline">{{Auth::user()->name}}</a><span style="color: blue;">/</span>
-                                    <li class="list-inline-item"> <a class="text-sm text-gray-700 dark:text-gray-500 underline" href="{{ route('logout') }}"
-                                                                     onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a></li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-
-                                @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                                @endauth
-                            </div>
-                        @endif
-
-
-                    </ul>
-
-                </div>
-
-            </div>
-
+            <a href="{{ url('/home') }}" class="nav-cta">Dashboard</a>
         </div>
-
     </header>
 
-    <div class="banner-section">
-
-        <div class="gyde-analytics-holder d-flex align-items-center"> </div>
-
-    </div>
-
-    <div class="girl-overlap">
-
-        <div class="banner-content">
-
+    <main>
+        <section class="page-hero">
             <div class="container">
+                <div class="page-banner">
+                    <div class="breadcrumb">
+                        <a href="{{ url('/home') }}">Dashboard</a>
+                        <span>/</span>
+                        <span>Categories</span>
+                    </div>
+                    <h1>Categories</h1>
+                </div>
+            </div>
+        </section>
 
-                <div class="row d-flex align-items-center">
+        <section class="section-shell">
+            <div class="container">
+                <div class="list-card">
+                    <div class="form-actions">
+                        <a href="{{ url('category-create') }}" class="primary-btn">Add category</a>
+                        <a href="{{ url('/home') }}" class="ghost-btn">Back to dashboard</a>
+                    </div>
+                    @include('layouts.flash')
 
-                    <div class="col-md-12">
-
-                        <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
-
-                            <h1 class="Blogs-heading">{{config('constant.web_name')}}</h1>
-
+                    @foreach($categories as $categoryItem)
+                        <div class="list-row">
+                            <div>
+                                <strong>{{ $categoryItem->name }}</strong>
+                                <span>{{ $categoryItem->media_count ?? 0 }} files</span>
+                            </div>
+                            <div class="form-actions">
+                                <a href="{{ url('category/show', [$categoryItem->id]) }}" class="inline-btn">Open</a>
+                                <form method="post" onsubmit="return confirm('Do you really want to delete this category?');" action="{{ url('delete-category', [$categoryItem->id]) }}" style="display: inline;">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="danger-btn">Delete</button>
+                                </form>
+                            </div>
                         </div>
-
-                    </div>
-
+                    @endforeach
                 </div>
-
             </div>
+        </section>
+    </main>
 
-        </div>
-
-    </div>
-
-</section>
-
-<section id="blogs">
-
-
-    <div class="page-section pb-0 blogs-block">
-
-        @include('layouts.flash')
-
+    <footer class="site-footer">
         <div class="container">
-
-            <div class="col-md-12">
-                <div data-ix="fade-in-on-load-2" class="white-contact-form w-form" style="padding-top: 0px; opacity: 1; display: block; transition: opacity 500ms ease 0s;">
-                    <h2 class="form-title subtitle">Upload here..</h2>
-                    <div class="">
-                        <a type="button" class="btn-send" href="{{url('category-create')}}">Add Category</a>
-                    </div>
-                    <div class="">
-                        <a type="button" class="btn-send" href="{{url('home')}}">Back</a>
-                    </div>
-
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
+                </div>
+                <div class="footer-links">
+                    <a href="{{ url('/') }}">Home</a>
+                    <a href="{{ url('about-us') }}">About</a>
+                    <a href="{{ route('login') }}">Login</a>
                 </div>
             </div>
+            <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>
-    </div>
-</section>
-<section id="blogs">
-
-    <div class="page-section pb-0 blogs-block">
-
-        <div class="container">
-
-            <div class="col-md-12">
-
-
-
-                <div class="col-md-12">
-
-                    <table>
-                        <tr>
-                            <th>#</th>
-                            <th>Category</th>
-                            <th>Action</th>
-                        </tr>
-                        @foreach($categories as $category)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$category->name}}</td>
-                                <th><form method="post" onsubmit="return confirm('Do you really want to delete this file?');"
-                                          action="{{url('delete-category',[$category->id])}}">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-sm btn-danger float-right"><i class="fa fa-trash"></i>
-                                            Delete</button>
-                                    </form>
-                                </th>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Hero Section Ends -->
-
-<!-- Page blogs Section Starts -->
-
-
-
-<!-- Page blogs Section end -->
-
-<!-- Start Virtual Data Room Section Starts -->
-
-
-
-<!-- Start Virtual Data Room Section end -->
-
-<!-- Footer Starts -->
-
-<footer>
-
-    <div class="container">
-
-        <div class="footer-top" data-aos="fade-up" data-aos-delay="300">
-
-            <div class="row">
-
-                <div class="col-md-3 col-sm-4">
-
-                    <div class="footer-links-block">
-
-
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-2 col-sm-4 feature-footer">
-
-
-
-                </div>
-
-                <div style="color:white;">powered by @claim-bridge</div>
-
-
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-</footer>
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-
-<!-- Footer Ends -->
-
-<!-- JS References -->
-
+    </footer>
 </body>
-
 </html>
-

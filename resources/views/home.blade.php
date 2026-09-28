@@ -1,326 +1,167 @@
 
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CLaim bridge</title>
-
-    <!-- CSS References -->
-
-    <link rel=" stylesheet " href="{{asset('../css/bootstrap.min.css')}} " />
-
-
-    <link rel="stylesheet " href="{{asset('../css/header.css')}} " />
-
-    <link rel="stylesheet " href="{{asset('../css/footer.css')}} " />
-
-    <link rel="stylesheet " href="{{asset('../css/blog.css')}} " />
-    <link rel="stylesheet " href="{{asset('../css/common.css')}} " />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-    <!-- JS References -->
-    <link rel="preconnect " href="https://fonts.googleapis.com ">
-
-    <link rel="preconnect " href="https://fonts.gstatic.com " crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap "
-
-          rel="stylesheet ">
-
-    <!-- Icons References -->
-
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet' />
-
-    <link rel="stylesheet" href="../css/style.css">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4CKWRFHG3M"></script>
-
-    <script>
-
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag(){dataLayer.push(arguments);}
-
-        gtag('js', new Date());
-
-
-
-        gtag('config', 'G-4CKWRFHG3M');
-
-    </script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
-
 <body>
+    <header class="site-header">
+        <div class="container navbar-shell">
+            <a class="brand" href="{{ url('/') }}" aria-label="Home">
+                <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
+            </a>
 
-<!-- Hero Section Starts -->
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="{{ url('/') }}">Home</a>
+                @foreach($categories as $categoryItem)
+                    <a href="{{ url('category/show', [$categoryItem->id]) }}">{{ strtoupper($categoryItem->name) }}</a>
+                @endforeach
+                <a href="{{ url('about-us') }}">About</a>
+            </nav>
 
-<section id="hero">
-
-    <header data-aos="fade-down" data-aos-delay="100">
-
-        <div class="container" style="margin-top: -30px;">
-
-            <div class="row d-flex align-items-center">
-
-                <div class="col-sm-2 col-5"> <a href="{{url('/')}}" id="logo" data-tilt> <img src="{{url('../images/logo.png')}}" /> </a>  </div>
-
-                <div class="col-sm-6 col-1">
-
-                    <div class="mobileMneu-wrapper">
-
-
-
-                    </div>
-
-                </div>
-
-                <div class="col-sm-4 col-6">
-
-                    <ul class="list-inline d-flex  align-items-center justify-content-end" id="headerRight">
-                        @if (Route::has('login'))
-                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                @auth
-                                    <a href="#" class="text-sm text-gray-700 dark:text-gray-500 underline">{{Auth::user()->name}}</a><span style="color: blue;">/</span>
-                                    <li class="list-inline-item"> <a class="text-sm text-gray-700 dark:text-gray-500 underline" href="{{ route('logout') }}"
-                                                                     onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a></li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-
-                                @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                                @endauth
-                            </div>
-                        @endif
-
-
-                    </ul>
-
-                </div>
-
-            </div>
-
+            <a href="{{ route('logout') }}" class="nav-cta" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
-
     </header>
 
-    <div class="banner-section">
-
-        <div class="gyde-analytics-holder d-flex align-items-center"> </div>
-
-    </div>
-
-    <div class="girl-overlap">
-
-        <div class="banner-content">
-
+    <main>
+        <section class="page-hero">
             <div class="container">
-
-                <div class="row d-flex align-items-center">
-
-                    <div class="col-md-12">
-
-                        <div class="banner-content-holder" data-aos="fade-right" data-aos-delay="100">
-
-                            <h1 class="Blogs-heading">{{config('constant.web_name')}}</h1>
-
-                        </div>
-
+                <div class="page-banner">
+                    <div class="breadcrumb">
+                        <span>Welcome back, {{ Auth::user()->name }}</span>
                     </div>
-
+                    <h1>Dashboard</h1>
                 </div>
-
             </div>
+        </section>
 
-        </div>
+        <section class="section-shell">
+            <div class="container stats-row">
+                <div class="stat-card">
+                    <strong>{{ $files->count() }}</strong>
+                    <span>Total files</span>
+                </div>
+                <div class="stat-card">
+                    <strong>{{ $categories->count() }}</strong>
+                    <span>Categories</span>
+                </div>
+                <div class="stat-card">
+                    <strong>{{ $categories->count() > 0 ? $categories->sum(fn($category) => is_numeric($category->media_count ?? null) ? $category->media_count : 0) : 0 }}</strong>
+                    <span>Indexed</span>
+                </div>
+            </div>
+        </section>
 
-    </div>
-
-</section>
-
-<section id="blogs">
-
-
-    <div class="page-section pb-0 blogs-block">
-
-        @include('layouts.flash')
-
-        <div class="container">
-
-            <div class="col-md-12">
-                <div data-ix="fade-in-on-load-2" class="white-contact-form w-form" style="padding-top: 0px; opacity: 1; display: block; transition: opacity 500ms ease 0s;">
-                    <h2 class="form-title subtitle">Upload here..</h2>
-                    <div class="">
-                       <a type="button" class="btn-send" href="{{url('category-create')}}">Add Category</a>
-                    </div>
-                    <div class="">
-                        <a type="button" class="btn-send" href="{{url('/category/show')}}">AllCategory</a>
-                    </div>
-                    <div class="cpage-form">
-                        <form action="{{url('upload-files')}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="formfield">
-                                <label for="cars">Choose a category:</label>
-                                <select name="category_id">
+        <section class="section-shell">
+            <div class="container content-layout">
+                <div class="content-card">
+                    <span class="section-tag">Upload files</span>
+                    <h2 style="margin: 0 0 18px; color: var(--secondary); letter-spacing: -0.05em; font-size: clamp(1.8rem, 3vw, 2.4rem);">Add documents</h2>
+                    @include('layouts.flash')
+                    <form action="{{ url('upload-files') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-grid">
+                            <div class="field-group">
+                                <label for="category_id">Choose a category</label>
+                                <select name="category_id" id="category_id">
                                     @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="formfield">
+                            <div class="field-group">
+                                <label for="fileToUpload">Select file(s)</label>
                                 <input type="file" name="fileToUpload[]" id="fileToUpload" multiple>
-
-
                             </div>
-
-
-
-                            <div class="">
-                                <input type="submit" class="btn-send" value="upload">
+                            <div class="form-actions">
+                                <button type="submit" class="primary-btn">Upload files</button>
+                                <a href="{{ url('category-create') }}" class="secondary-btn">Create category</a>
                             </div>
-                        </form>
+                        </div>
+                    </form>
+                </div>
+
+                <aside class="info-panel">
+                    <span class="section-tag" style="color: rgba(255,255,255,0.7);">Quick actions</span>
+                    <h3 style="margin: 0 0 18px; font-size: 2rem; letter-spacing: -0.05em;">Admin tools</h3>
+                    <div class="form-actions" style="flex-direction: column; align-items: stretch;">
+                        <a href="{{ url('category-create') }}" class="secondary-btn" style="background: rgba(255,255,255,0.08); color: white; border-color: rgba(255,255,255,0.16);">Add category</a>
+                        <a href="{{ url('/category/show') }}" class="secondary-btn" style="background: rgba(255,255,255,0.08); color: white; border-color: rgba(255,255,255,0.16);">Manage categories</a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section-shell">
+            <div class="container">
+                <div class="content-card">
+                    <span class="section-tag">Your uploads</span>
+                    <h2 style="margin: 0 0 18px; color: var(--secondary); letter-spacing: -0.05em; font-size: clamp(1.8rem, 3vw, 2.4rem);">Recent files</h2>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category</th>
+                                    <th>File name</th>
+                                    <th>Download</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($files as $file)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $file->category }}</td>
+                                        <td class="file-name">{{ $file->name }}</td>
+                                        <td><a href="{{ url('download', [$file->id]) }}" class="inline-btn"><i class="fa-solid fa-download"></i> Download</a></td>
+                                        <td>
+                                            <form method="post" onsubmit="return confirm('Do you really want to delete this file?');" action="{{ url('delete-files', [$file->id]) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="danger-btn"><i class="fa-solid fa-trash"></i> Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" style="text-align:center; color: var(--text-soft);">No files uploaded yet.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<section id="blogs">
+        </section>
+    </main>
 
-    <div class="page-section pb-0 blogs-block">
-
+    <footer class="site-footer">
         <div class="container">
-
-            <div class="col-md-12">
-
-
-
-                <div class="col-md-12">
-
-                    <table>
-                        <tr>
-                            <th>#</th>
-                            <th>Category</th>
-                            <th>Files</th>
-                            <th>Action</th>
-                            <th><i class="fa fa-download"></i></th>
-                        </tr>
-                        @foreach($files as $file)
-                            @php $file_name=substr($file->name, 0, 40); @endphp
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$file->category}}</td>
-                                <td>{{$file_name.'...'}}</td>
-                                <th><form method="post" onsubmit="return confirm('Do you really want to delete this file?');"
-                                          action="{{url('delete-files',[$file->id])}}">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-sm btn-danger float-right"><i class="fa fa-trash"></i>
-                                            Delete file</button>
-                                    </form>
-                                </th>
-                                <td>
-                                    <a href="{{url('download',[$file->id])}}"><i class="fa fa-download"></i></a></td>
-                            </tr>
-                        @endforeach
-                    </table>
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
+                </div>
+                <div class="footer-links">
+                    <a href="{{ url('/') }}">Home</a>
+                    <a href="{{ url('about-us') }}">About</a>
+                    <a href="{{ route('login') }}">Login</a>
                 </div>
             </div>
+            <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>
-    </div>
-</section>
-
-<!-- Hero Section Ends -->
-
-<!-- Page blogs Section Starts -->
-
-
-
-<!-- Page blogs Section end -->
-
-<!-- Start Virtual Data Room Section Starts -->
-
-
-
-<!-- Start Virtual Data Room Section end -->
-
-<!-- Footer Starts -->
-
-<footer>
-
-    <div class="container">
-
-        <div class="footer-top" data-aos="fade-up" data-aos-delay="300">
-
-            <div class="row">
-
-                <div class="col-md-3 col-sm-4">
-
-                    <div class="footer-links-block">
-
-
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-2 col-sm-4 feature-footer">
-
-
-
-                </div>
-
-                <div style="color:white;">powered by @claim-bridge</div>
-
-
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-</footer>
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-
-<!-- Footer Ends -->
-
-<!-- JS References -->
-
+    </footer>
 </body>
-
 </html>
 
