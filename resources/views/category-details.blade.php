@@ -19,11 +19,11 @@
             </a>
 
             <nav class="nav-links" aria-label="Main navigation">
-                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ url('/') }}">HOME</a>
                 @foreach($categories as $navCategory)
                     <a href="{{ url('category/show', [$navCategory->id]) }}" class="{{ $navCategory->id == $category->id ? 'is-active' : '' }}">{{ strtoupper($navCategory->name) }}</a>
                 @endforeach
-                <a href="{{ url('about-us') }}">About</a>
+                <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
 
             @auth
@@ -104,8 +104,12 @@
                     <p>Browse the available documents and downloads for this section.</p>
                     <ul>
                         <li>{{ count($files) }} file(s) available</li>
-                        <li>Updated and organized by category</li>
-                        <li>Fast access for review and download</li>
+                        @php
+                            $lastUploaded = $files->max('updated_at');
+                        @endphp
+                        @if($lastUploaded)
+                            <li>Last uploaded: {{ \Carbon\Carbon::parse($lastUploaded)->format('d M Y, h:i A') }}</li>
+                        @endif
                     </ul>
                 </aside>
             </div>
@@ -119,9 +123,9 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
                 </div>
                 <div class="footer-links">
-                    <a href="{{ url('/') }}">Home</a>
-                    <a href="{{ url('about-us') }}">About</a>
-                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ url('/') }}">HOME</a>
+                    <a href="{{ url('contact-us') }}">CONTACT</a>
+                    <a href="{{ route('login') }}">LOGIN</a>
                 </div>
             </div>
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>

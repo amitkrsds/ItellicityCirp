@@ -19,11 +19,11 @@
             </a>
 
             <nav class="nav-links" aria-label="Main navigation">
-                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ url('/') }}">HOME</a>
                 @foreach($categories as $categoryItem)
                     <a href="{{ url('category/show', [$categoryItem->id]) }}">{{ strtoupper($categoryItem->name) }}</a>
                 @endforeach
-                <a href="{{ url('about-us') }}">About</a>
+                <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
 
             <a href="{{ url('/home') }}" class="nav-cta">Dashboard</a>
@@ -78,9 +78,9 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
                 </div>
                 <div class="footer-links">
-                    <a href="{{ url('/') }}">Home</a>
-                    <a href="{{ url('about-us') }}">About</a>
-                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ url('/') }}">HOME</a>
+                    <a href="{{ url('contact-us') }}">CONTACT</a>
+                    <a href="{{ route('login') }}">LOGIN</a>
                 </div>
             </div>
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>

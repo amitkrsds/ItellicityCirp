@@ -19,12 +19,11 @@
             </a>
 
             <nav class="nav-links" aria-label="Main navigation">
-                <a href="{{ url('/') }}" class="is-active">Home</a>
+                <a href="{{ url('/') }}" class="is-active">HOME</a>
                 @foreach($categories as $category)
                     <a href="{{ url('category/show', [$category->id]) }}">{{ strtoupper($category->name) }}</a>
                 @endforeach
-                <a href="{{ url('about-us') }}">About</a>
-                <a href="{{ url('contact-us') }}">Contact</a>
+                <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
 
             @auth
@@ -40,6 +39,9 @@
             <div class="container hero-grid hero-banner hero-banner-image" style="background-image: url('{{ asset('images/updated_bg.png') }}');">
                 <div class="hero-copy">
                     <h1>{{ config('constant.web_name') ?? 'Claim Bridge' }}</h1>
+                    @if(config('constant.web_cin'))
+                        <p class="banner-cin">{{ config('constant.web_cin') }}</p>
+                    @endif
                 </div>
             </div>
         </section>
@@ -49,7 +51,6 @@
                 <div class="section-heading">
                     <div>
                         <span class="section-tag">Document library</span>
-                        <h2>Browse by category</h2>
                     </div>
                 </div>
 
@@ -128,10 +129,9 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
                 </div>
                 <div class="footer-links">
-                    <a href="{{ url('/') }}">Home</a>
-                    <a href="{{ url('about-us') }}">About</a>
-                    <a href="{{ url('contact-us') }}">Contact</a>
-                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ url('/') }}">HOME</a>
+                    <a href="{{ url('contact-us') }}">CONTACT</a>
+                    <a href="{{ route('login') }}">LOGIN</a>
                 </div>
             </div>
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>

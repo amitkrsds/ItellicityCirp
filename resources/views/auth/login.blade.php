@@ -18,8 +18,8 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
             </a>
             <nav class="nav-links" aria-label="Main navigation">
-                <a href="{{ url('/') }}">Home</a>
-                <a href="{{ url('about-us') }}">About</a>
+                <a href="{{ url('/') }}">HOME</a>
+                <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
             <a href="{{ url('/') }}" class="nav-cta">Back</a>
         </div>
