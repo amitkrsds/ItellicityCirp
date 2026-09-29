@@ -64,10 +64,6 @@
                         </div>
                     </form>
 
-                    <div style="margin-top: 22px; text-align: center; color: var(--text-soft); font-size: 0.96rem;">
-                        Don’t have an account?
-                        <a href="{{ route('register') }}" style="color: var(--primary-dark); font-weight: 700;">Create one</a>
-                    </div>
                 </div>
             </div>
         </section>

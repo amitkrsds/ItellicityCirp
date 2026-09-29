@@ -24,6 +24,7 @@
                     <a href="{{ url('category/show', [$category->id]) }}">{{ strtoupper($category->name) }}</a>
                 @endforeach
                 <a href="{{ url('about-us') }}">About</a>
+                <a href="{{ url('contact-us') }}">Contact</a>
             </nav>
 
             @auth
@@ -36,14 +37,9 @@
 
     <main>
         <section class="hero-section">
-            <div class="container hero-grid hero-banner">
+            <div class="container hero-grid hero-banner hero-banner-image" style="background-image: url('{{ asset('images/updated_bg.png') }}');">
                 <div class="hero-copy">
                     <h1>{{ config('constant.web_name') ?? 'Claim Bridge' }}</h1>
-                    <p>Access official updates, notices, and category-wise documents in a clear and professional information portal.</p>
-                    <div class="hero-actions">
-                        <a href="#library" class="primary-btn">Explore documents</a>
-                        <a href="{{ url('about-us') }}" class="secondary-btn">Learn more</a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -66,7 +62,7 @@
                         @endphp
                         <div class="category-card">
                             <div class="category-card-header">
-                                <div>
+                                <div class="category-title-frame">
                                     <h3>{{ $category->name }}</h3>
                                 </div>
                                 <span class="file-chip">
@@ -123,27 +119,6 @@
             </div>
         </section>
 
-        <section class="section-shell">
-            <div class="container">
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3>Secure access</h3>
-                        <p>Organized, trusted information with a professional presentation for stakeholders and teams.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fa-solid fa-folder-open"></i></div>
-                        <h3>Organized library</h3>
-                        <p>Files are grouped into logical categories so users can find the right information quickly.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fa-solid fa-download"></i></div>
-                        <h3>Fast downloads</h3>
-                        <p>Simple access to official notices and relevant documents with one-click downloading.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="site-footer">
@@ -155,17 +130,13 @@
                 <div class="footer-links">
                     <a href="{{ url('/') }}">Home</a>
                     <a href="{{ url('about-us') }}">About</a>
+                    <a href="{{ url('contact-us') }}">Contact</a>
                     <a href="{{ route('login') }}">Login</a>
                 </div>
             </div>
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>
     </footer>
-
-    <div>
-        <a href="" class="btn btn-block btn-twitter"> <i class="fa fa-twitter"></i> &nbsp; Login via Twitter</a>
-        <a href="" class="btn btn-block btn-facebook"> <i class="fa fa-facebook-f"></i> &nbsp; Login via facebook</a>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

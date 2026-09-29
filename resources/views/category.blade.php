@@ -61,6 +61,7 @@
                             </div>
                             <div class="form-actions">
                                 <a href="{{ url('category/show', [$categoryItem->id]) }}" class="inline-btn">Open</a>
+                                <a href="{{ url('category-edit', [$categoryItem->id]) }}" class="secondary-btn">Edit</a>
                                 <form method="post" onsubmit="return confirm('Do you really want to delete this category?');" action="{{ url('delete-category', [$categoryItem->id]) }}" style="display: inline;">
                                     @csrf
                                     @method('delete')

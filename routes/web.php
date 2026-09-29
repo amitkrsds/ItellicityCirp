@@ -24,7 +24,7 @@ Route::get('/', function () {
     }
     return view('welcome',['categories'=>$categories]);
 });
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/upload-files', [App\Http\Controllers\HomeController::class, 'uploadFiles']);
@@ -34,6 +34,8 @@ Route::get('/view/{media}', [App\Http\Controllers\Controller::class, 'viewFile']
 Route::get('/file/{media}', [App\Http\Controllers\Controller::class, 'showFile'])->name('file.show');
 Route::get('/category-create', [App\Http\Controllers\HomeController::class, 'categoryCreate']);
 Route::post('/add-category', [App\Http\Controllers\HomeController::class, 'savecategory']);
+Route::get('/category-edit/{category}', [App\Http\Controllers\HomeController::class, 'editCategory']);
+Route::put('/category-update/{category}', [App\Http\Controllers\HomeController::class, 'updateCategory']);
 Route::get('/category/show', [App\Http\Controllers\HomeController::class, 'categoryDelete'])->name('category');
 Route::delete('/delete-category/{category}', [App\Http\Controllers\HomeController::class, 'deleteCategory']);
 Route::get('/category/show/{category}', function (Category $category) {
@@ -43,4 +45,9 @@ Route::get('/category/show/{category}', function (Category $category) {
 Route::get('about-us', function () {
     $categories=Category::all();
     return view('about-us',['categories'=>$categories]);
+});
+
+Route::get('contact-us', function () {
+    $categories=Category::all();
+    return view('contact-us',['categories'=>$categories]);
 });

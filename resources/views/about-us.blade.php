@@ -24,6 +24,7 @@
                     <a href="{{ url('category/show', [$category->id]) }}">{{ strtoupper($category->name) }}</a>
                 @endforeach
                 <a href="{{ url('about-us') }}" class="is-active">About</a>
+                <a href="{{ url('contact-us') }}">Contact</a>
             </nav>
 
             @auth
@@ -81,6 +82,7 @@
                 <div class="footer-links">
                     <a href="{{ url('/') }}">Home</a>
                     <a href="{{ url('about-us') }}">About</a>
+                    <a href="{{ url('contact-us') }}">Contact</a>
                     <a href="{{ route('login') }}">Login</a>
                 </div>
             </div>

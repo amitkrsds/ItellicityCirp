@@ -84,6 +84,21 @@ HomeController extends Controller
         return redirect()->route('home')->with('success','Created successfully');
     }
 
+    public function editCategory(Category $category){
+        return view('category-create', [
+            'categories' => Category::all(),
+            'editCategory' => $category,
+        ]);
+    }
+
+    public function updateCategory(Request $request, Category $category){
+        $category->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('category')->with('success','Updated successfully');
+    }
+
     public function categoryDelete(){
         $catgories=Category::all();
         return view('category',['categories'=>$catgories]);

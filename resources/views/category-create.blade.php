@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Category | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
+    <title>{{ isset($editCategory) ? 'Edit Category' : 'Add Category' }} | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -37,9 +37,9 @@
                     <div class="breadcrumb">
                         <a href="{{ url('/home') }}">Dashboard</a>
                         <span>/</span>
-                        <span>Add category</span>
+                        <span>{{ isset($editCategory) ? 'Edit category' : 'Add category' }}</span>
                     </div>
-                    <h1>Add category</h1>
+                    <h1>{{ isset($editCategory) ? 'Edit category' : 'Add category' }}</h1>
                 </div>
             </div>
         </section>
@@ -47,18 +47,21 @@
         <section class="section-shell">
             <div class="container">
                 <div class="form-card">
-                    <span class="section-tag">Create a new section</span>
-                    <h2 style="margin: 0 0 18px; font-size: clamp(2rem, 3vw, 2.6rem); color: var(--secondary); letter-spacing: -0.05em;">Add category</h2>
+                    <span class="section-tag">{{ isset($editCategory) ? 'Update an existing section' : 'Create a new section' }}</span>
+                    <h2 style="margin: 0 0 18px; font-size: clamp(2rem, 3vw, 2.6rem); color: var(--secondary); letter-spacing: -0.05em;">{{ isset($editCategory) ? 'Edit category' : 'Add category' }}</h2>
                     @include('layouts.flash')
-                    <form action="{{ url('add-category') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ isset($editCategory) ? url('category-update', [$editCategory->id]) : url('add-category') }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @if(isset($editCategory))
+                            @method('put')
+                        @endif
                         <div class="form-grid">
                             <div class="field-group">
                                 <label for="name">Category name</label>
-                                <input type="text" id="name" name="name" placeholder="Enter category name..." required>
+                                <input type="text" id="name" name="name" value="{{ old('name', $editCategory->name ?? '') }}" placeholder="Enter category name..." required>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="primary-btn">Save category</button>
+                                <button type="submit" class="primary-btn">{{ isset($editCategory) ? 'Update category' : 'Save category' }}</button>
                                 <a href="{{ url('/home') }}" class="ghost-btn">Back to dashboard</a>
                             </div>
                         </div>
