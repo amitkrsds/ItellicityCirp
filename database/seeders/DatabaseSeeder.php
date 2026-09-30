@@ -17,11 +17,16 @@ class DatabaseSeeder extends Seeder
     {
         $user = User::firstOrCreate(
             ['email' => 'noidamarketingcirp@gmail.com'],
-            ['name' => 'noidamarketing']
+            [
+                'name' => 'noidamarketing',
+                'password' => Hash::make('password@188'),
+            ]
         );
 
-        $user->password = Hash::make('password@188');
-        $user->save();
+        if ($user->wasRecentlyCreated || empty($user->password)) {
+            $user->password = Hash::make('password@188');
+            $user->save();
+        }
 
         $this->command->info('Default seeded user created: noidamarketing / noidamarketingcirp@gmail.com / password@188');
     }
