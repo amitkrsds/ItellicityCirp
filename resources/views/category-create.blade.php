@@ -14,15 +14,12 @@
 <body>
     <header class="site-header">
         <div class="container navbar-shell">
-            <a class="brand" href="{{ url('/') }}" aria-label="Home">
-                <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
-            </a>
-
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="{{ url('/') }}">HOME</a>
-                @foreach($categories as $categoryItem)
-                    <a href="{{ url('category/show', [$categoryItem->id]) }}">{{ strtoupper($categoryItem->name) }}</a>
+                @foreach($categories as $category)
+                    <a href="{{ url('category/show', [$category->id]) }}">{{ strtoupper($category->name) }}</a>
                 @endforeach
+                <a href="{{ url('about-us') }}">ABOUT</a>
                 <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
 
@@ -74,9 +71,6 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-inner">
-                <div class="footer-brand">
-                    <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
-                </div>
                 <div class="footer-links">
                     <a href="{{ url('/') }}">HOME</a>
                     <a href="{{ url('contact-us') }}">CONTACT</a>

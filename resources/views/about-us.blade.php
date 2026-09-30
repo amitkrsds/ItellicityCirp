@@ -14,10 +14,6 @@
 <body>
     <header class="site-header">
         <div class="container navbar-shell">
-            <a class="brand" href="{{ url('/') }}" aria-label="Home">
-                <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
-            </a>
-
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="{{ url('/') }}">Home</a>
                 @foreach($categories as $category)
@@ -52,11 +48,10 @@
         <section class="section-shell">
             <div class="container content-layout">
                 <div class="content-card">
-                    <span class="section-tag">Who we are</span>
-                    <h2 style="margin: 0 0 18px; color: var(--secondary); letter-spacing: -0.05em; font-size: clamp(2rem, 3vw, 2.8rem);">A transparent and efficient information portal</h2>
-                    <p>The National Company Law Tribunal, Hyderabad Bench (“NCLT”) by its order dated October 10th 2022, (“Admission Order”) (order received on October 18th 2022) ordered the commencement of corporate insolvency resolution process (“CIRP”) in respect of GVK Power Goindwal Sahib Limited (“GVKPGSL” or “Company”) under the provisions of the Insolvency and Bankruptcy Code, 2016 and subsequent amendments thereof (“IBC” or “Code”).</p>
-                    <p>Pursuant to the admission order, Mr. Ravi Sethia has been appointed as the Interim Resolution Professional (“IRP”). Subsequently, the Committee of Creditors (CoC) of GVKPGSL in its first meeting in Nov 2022 confirmed the IRP’s appointment as the Resolution Professional (RP) of GVKPGSL.</p>
-                    <p>The powers of the Board of Directors of GVKPGSL are suspended and such powers are vested with the RP. The RP is henceforth responsible for the management of the affairs of GVKPGSL. The objective of CIRP is to attempt to resolve the ongoing financial stress and the RP continues to manage the operations of GVKPGSL as a going concern.</p>
+                    <span class="section-tag">About Us</span>
+                    
+                    <p>Noida Marketing Private Limited is under Corporate Insolvency Resolution Process (CIRP) in Insolvency &amp; Bankruptcy Code, 2016 vide Hon'ble NCLT Court CP (IB) No. 465/ND/2024 dated 24.04.2026.</p>
+                    <p>The Hon'ble NCLT Court has appointed Mr. Manoj Kumar Anand (Registration Number: IBBI/IPA-001/IP-P00084/2017-18/10180) as Resolution Professional to conduct Corporate Insolvency Resolution Process (CIRP) of Corporate Debtor - Noida Marketing Private Limited.</p>
                 </div>
 
                 <aside class="info-panel">
@@ -76,9 +71,6 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-inner">
-                <div class="footer-brand">
-                    <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
-                </div>
                 <div class="footer-links">
                     <a href="{{ url('/') }}">Home</a>
                     <a href="{{ url('about-us') }}">About</a>

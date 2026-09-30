@@ -42,6 +42,11 @@ Route::get('/category/show/{category}', function (Category $category) {
     $files=Media::where('category_id',$category->id)->get();
     return view('category-details',['categories'=>Category::all(),'category'=>$category,'files'=>$files]);
 });
+Route::get('about-us', function () {
+    $categories=Category::all();
+    return view('about-us',['categories'=>$categories]);
+});
+
 Route::get('contact-us', function () {
     $categories=Category::all();
     return view('contact-us',['categories'=>$categories]);

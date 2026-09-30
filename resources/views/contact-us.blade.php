@@ -14,15 +14,12 @@
 <body>
     <header class="site-header">
         <div class="container navbar-shell">
-            <a class="brand" href="{{ url('/') }}" aria-label="Home">
-                <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
-            </a>
-
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="{{ url('/') }}">HOME</a>
                 @foreach($categories as $category)
                     <a href="{{ url('category/show', [$category->id]) }}">{{ strtoupper($category->name) }}</a>
                 @endforeach
+                <a href="{{ url('about-us') }}">ABOUT</a>
                 <a href="{{ url('contact-us') }}" class="is-active">CONTACT</a>
             </nav>
 
@@ -51,61 +48,35 @@
         <section class="section-shell">
             <div class="container content-layout">
                 <div class="content-card">
-                    <span class="section-tag">Communications</span>
-                    <h2 style="margin: 0 0 18px; color: var(--secondary); letter-spacing: -0.05em; font-size: clamp(2rem, 3vw, 2.8rem);">Contact information for the CIRP process</h2>
-
-                    <p>For all communications relating to the Corporate Insolvency Resolution Process (CIRP) of Intellicity Business Park Private Limited, please use the contact details provided below.</p>
-
+                   
                     <div style="margin-top: 24px;">
                         <h3 style="margin: 0 0 12px; color: var(--secondary);">Resolution Professional</h3>
                         <p>
-                            <strong>Mr. Manoj Kulshrestha</strong><br>
-                            Resolution Professional<br>
-                            Intellicity Business Park Private Limited
+                            <strong>MANOJ KUMAR ANAND</strong><br>
+                            Resolution Professional
                         </p>
                         <p>
-                            <strong>IBBI Registration No.</strong><br>
-                            IBBI/IPA-003/IP-N00005/2016-17/10024
+                            <strong>Regd. Address</strong><br>
+                            Parsvnath Tower Near Shahdara Metro Station,<br>
+                            Shahdara, East Delhi, Delhi, India, 110032
                         </p>
                         <p>
-                            <strong>Office Address</strong><br>
-                            4F-CS-14, Ansal Plaza Mall, Vaishali,<br>
-                            Opp. Dabur, Ghaziabad,<br>
-                            Uttar Pradesh – 201010
-                        </p>
-                        <p>
-                            <strong>Process Email</strong><br>
-                            <a href="mailto:intellicitycirp@gmail.com">intellicitycirp@gmail.com</a>
-                        </p>
-                        <p>
-                            <strong>Landline Number</strong><br>
-                            <a href="tel:+9101204226157">+91 0120 4226157</a>
-                        </p>
-                        <p>
-                            <strong>Office WhatsApp number</strong><br>
-                            <a href="https://wa.me/919354853592" target="_blank" rel="noopener noreferrer">+91 93548 53592</a>
-                        </p>
-                    </div>
-
-                    <div style="margin-top: 32px;">
-                        <h3 style="margin: 0 0 12px; color: var(--secondary);">Authorised Representative – Class of Homebuyers</h3>
-                        <p>
-                            <strong>Mr. Vivek Raheja</strong><br>
-                            Authorised Representative<br>
-                            Class of Homebuyers
-                        </p>
-                        <p>
-                            <strong>IBBI Registration No.</strong><br>
-                            IBBI/IPA-001/IP-P00055/2017-18/10133
-                        </p>
-                        <p>
-                            <strong>Registered Address</strong><br>
-                            JD 2C, 2nd Floor, Pitampura,<br>
-                            New Delhi, Delhi – 110034
+                            <strong>Correspondence Address</strong><br>
+                            Parsvnath Tower Near Shahdara Metro Station,<br>
+                            Shahdara, East Delhi, Delhi, India, 110032
                         </p>
                         <p>
                             <strong>Email</strong><br>
-                            <a href="mailto:intellicityar@gmail.com">intellicityar@gmail.com</a>
+                            <a href="mailto:noidamarketingcirp@gmail.com">noidamarketingcirp@gmail.com</a>
+                        </p>
+                        <p>
+                            <strong>Tel.</strong><br>
+                            <a href="tel:01145641903">011-45641903</a>, <a href="tel:01145051903">011-45051903</a>
+                        </p>
+                        <p>
+                            <strong>Note</strong><br>
+                            RP Team available at Delhi office: 2, Community Centre, 3rd Floor, (Near PVR/McDonald's), Naraina, New Delhi-110028<br>
+                            Monday to Saturday - Times 11.00 AM to 5.00 PM
                         </p>
                     </div>
                 </div>
@@ -113,11 +84,11 @@
                 <aside class="info-panel">
                     <span class="section-tag" style="color: rgba(255,255,255,0.7);">Important communication</span>
                     <h3 style="margin: 0 0 18px; font-size: 2rem; letter-spacing: -0.05em;">Stakeholder guidance</h3>
-                    <p>For matters concerning the CIRP of Intellicity Business Park Private Limited, stakeholders are requested to communicate through the appropriate email address mentioned above.</p>
+                    <p>All stakeholders are requested to communicate with the Resolution Professional through the official email address and contact numbers provided above.</p>
                     <ul>
-                        <li>Use the official process email for CIRP communications.</li>
-                        <li>Contact the authorised representative for homebuyer-related coordination.</li>
-                        <li>Provide complete details to ensure proper processing of your query.</li>
+                        <li>Use the official email for all CIRP-related communication.</li>
+                        <li>Contact the RP team during office hours: Monday to Saturday, 11:00 AM to 5:00 PM.</li>
+                        <li>Share complete details to ensure prompt processing of your query.</li>
                     </ul>
                 </aside>
             </div>
@@ -127,11 +98,9 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-inner">
-                <div class="footer-brand">
-                    <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo brand-logo-footer">
-                </div>
                 <div class="footer-links">
                     <a href="{{ url('/') }}">HOME</a>
+                    <a href="{{ url('about-us') }}">ABOUT</a>
                     <a href="{{ url('contact-us') }}">CONTACT</a>
                     <a href="{{ route('login') }}">LOGIN</a>
                 </div>

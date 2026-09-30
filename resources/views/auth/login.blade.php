@@ -14,11 +14,9 @@
 <body>
     <header class="site-header">
         <div class="container navbar-shell">
-            <a class="brand" href="{{ url('/') }}" aria-label="Home">
-                <img src="{{ asset('images/logo.png') }}" alt="Intelicity logo" class="brand-logo">
-            </a>
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="{{ url('/') }}">HOME</a>
+                <a href="{{ url('about-us') }}">ABOUT</a>
                 <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
             <a href="{{ url('/') }}" class="nav-cta">Back</a>
