@@ -7,7 +7,7 @@
     <title>{{config('constant.web_name') ?? 'Claim Bridge'}}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
@@ -26,6 +26,10 @@
                 <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
 
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
             @auth
                 <a href="{{ url('/home') }}" class="nav-cta">Dashboard</a>
             @else
@@ -36,7 +40,7 @@
 
     <main>
         <section class="hero-section">
-            <div class="container hero-grid hero-banner hero-banner-image" style="background-image: url('{{ asset('images/updated_bg.png') }}');">
+            <div class="hero-banner hero-banner--full hero-banner-image" style="background-image: url('{{ asset('images/updated_bg.png') }}');">
                 <div class="hero-copy">
                     <h1>{{ config('constant.web_name') ?? 'Claim Bridge' }}</h1>
                     @if(config('constant.web_cin'))
@@ -58,29 +62,23 @@
                     @foreach($categories as $category)
                         @php
                             $allFiles = collect($category->files ?? []);
-                            $visibleFiles = $allFiles->slice(0, 1);
-                            $hiddenFiles = $allFiles->slice(1);
+                            $visibleFiles = $allFiles->take(1);
+                            $hiddenFiles = $allFiles->skip(1);
                         @endphp
                         <div class="category-card">
                             <div class="category-card-header">
                                 <div class="category-title-frame">
                                     <h3>{{ $category->name }}</h3>
                                 </div>
-                                <span class="file-chip">
-                                    @php
-                                        $totalFiles = count($category->files ?? []);
-                                    @endphp
-                                    {{ $totalFiles > 1 ? '1 of ' . $totalFiles . ' files' : $totalFiles . ' file' }}
-                                </span>
                             </div>
 
                             <ul class="file-list">
                                 @forelse($visibleFiles as $file)
-                                    @php $file_name = strlen($file->name) > 38 ? substr($file->name, 0, 38).'...' : $file->name; @endphp
+                                    @php $file_name = strlen($file->name) > 72 ? substr($file->name, 0, 72).'...' : $file->name; @endphp
                                     <li>
-                                        <a href="{{ route('file.view', ['media' => $file->id]) }}" title="View file" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;">
+                                        <a href="{{ route('file.view', ['media' => $file->id]) }}" title="View file" class="file-item-link">
+                                            <i class="fa-solid fa-file-pdf file-icon" aria-hidden="true"></i>
                                             <span>{{ $file_name }}</span>
-                                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                 @empty
@@ -88,30 +86,30 @@
                                         <span>No files uploaded yet</span>
                                     </li>
                                 @endforelse
-                            </ul>
 
-                            @if($hiddenFiles->isNotEmpty())
-                                <ul class="file-list file-list-extra" id="files-{{ $category->id }}" style="display: none;">
+                                @if($hiddenFiles->isNotEmpty())
                                     @foreach($hiddenFiles as $file)
-                                        @php $file_name = strlen($file->name) > 38 ? substr($file->name, 0, 38).'...' : $file->name; @endphp
-                                        <li>
-                                            <a href="{{ route('file.view', ['media' => $file->id]) }}" title="View file" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;">
+                                        @php $file_name = strlen($file->name) > 72 ? substr($file->name, 0, 72).'...' : $file->name; @endphp
+                                        <li class="hidden-file-row hidden-files-{{ $category->id }}" hidden>
+                                            <a href="{{ route('file.view', ['media' => $file->id]) }}" title="View file" class="file-item-link">
+                                                <i class="fa-solid fa-file-pdf file-icon" aria-hidden="true"></i>
                                                 <span>{{ $file_name }}</span>
-                                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                             </a>
                                         </li>
                                     @endforeach
-                                </ul>
-                            @endif
+                                @endif
+                            </ul>
 
                             @if($hiddenFiles->isNotEmpty())
                                 <div class="category-footer">
-                                    <button type="button" class="show-more-btn" data-target="files-{{ $category->id }}">Show more</button>
-                                    <a href="{{ url('category/show', [$category->id]) }}" class="inline-btn">Open category</a>
-                                </div>
-                            @else
-                                <div class="category-footer">
-                                    <a href="{{ url('category/show', [$category->id]) }}" class="inline-btn">Open category</a>
+                                    <button
+                                        type="button"
+                                        class="show-more-btn"
+                                        data-target="hidden-files-{{ $category->id }}"
+                                        aria-expanded="false"
+                                    >
+                                        Show more
+                                    </button>
                                 </div>
                             @endif
                         </div>
@@ -134,21 +132,43 @@
                     <a href="{{ route('login') }}">LOGIN</a>
                 </div>
             </div>
+            <div class="footer-services">
+                <span class="section-tag" style="color: rgba(255,255,255,0.8);">Services</span>
+                <div class="service-links">
+                    @foreach($categories as $category)
+                        <a href="{{ url('category/show', [$category->id]) }}">{{ $category->name }}</a>
+                    @endforeach
+                </div>
+            </div>
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            var header = document.querySelector('.site-header');
+            var navToggle = document.querySelector('.nav-toggle');
+
+            if (header && navToggle) {
+                navToggle.addEventListener('click', function () {
+                    var isOpen = header.classList.toggle('nav-open');
+                    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            }
+
             document.querySelectorAll('.show-more-btn').forEach(function (button) {
                 button.addEventListener('click', function () {
-                    var targetId = this.getAttribute('data-target');
-                    var target = document.getElementById(targetId);
-                    if (!target) return;
+                    var className = this.getAttribute('data-target');
+                    var rows = document.querySelectorAll('.' + className);
+                    if (!rows.length) return;
 
-                    var isCurrentlyHidden = target.style.display === 'none';
-                    target.style.display = isCurrentlyHidden ? 'block' : 'none';
-                    this.textContent = isCurrentlyHidden ? 'Show less' : 'Show more';
+                    var shouldShow = rows[0].hasAttribute('hidden');
+                    rows.forEach(function (row) {
+                        row.hidden = !shouldShow;
+                    });
+
+                    this.textContent = shouldShow ? 'Show less' : 'Show more';
+                    this.setAttribute('aria-expanded', shouldShow ? 'true' : 'false');
                 });
             });
         });

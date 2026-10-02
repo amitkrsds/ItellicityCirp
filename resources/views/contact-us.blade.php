@@ -7,7 +7,7 @@
     <title>Contact Us | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
@@ -25,6 +25,10 @@
                 @endforeach
                 <a href="{{ url('contact-us') }}" class="is-active">CONTACT</a>
             </nav>
+
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
 
             @auth
                 <a href="{{ url('/home') }}" class="nav-cta">Dashboard</a>
@@ -52,7 +56,7 @@
             <div class="container content-layout">
                 <div class="content-card">
                     <span class="section-tag">Communications</span>
-                    <h2 style="margin: 0 0 18px; color: var(--secondary); letter-spacing: -0.05em; font-size: clamp(2rem, 3vw, 2.8rem);">Contact information for the CIRP process</h2>
+                    <h2 class="section-title">Contact information for the CIRP process</h2>
 
                     <p>For all communications relating to the Corporate Insolvency Resolution Process (CIRP) of Intellicity Business Park Private Limited, please use the contact details provided below.</p>
 
@@ -112,7 +116,7 @@
 
                 <aside class="info-panel">
                     <span class="section-tag" style="color: rgba(255,255,255,0.7);">Important communication</span>
-                    <h3 style="margin: 0 0 18px; font-size: 2rem; letter-spacing: -0.05em;">Stakeholder guidance</h3>
+                    <h3 class="panel-title">Stakeholder guidance</h3>
                     <p>For matters concerning the CIRP of Intellicity Business Park Private Limited, stakeholders are requested to communicate through the appropriate email address mentioned above.</p>
                     <ul>
                         <li>Use the official process email for CIRP communications.</li>
@@ -139,5 +143,19 @@
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var header = document.querySelector('.site-header');
+            var navToggle = document.querySelector('.nav-toggle');
+
+            if (header && navToggle) {
+                navToggle.addEventListener('click', function () {
+                    var isOpen = header.classList.toggle('nav-open');
+                    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

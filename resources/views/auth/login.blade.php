@@ -7,7 +7,7 @@
     <title>Login | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
@@ -21,16 +21,21 @@
                 <a href="{{ url('/') }}">HOME</a>
                 <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
+
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
             <a href="{{ url('/') }}" class="nav-cta">Back</a>
         </div>
     </header>
 
     <main>
         <section class="section-shell">
-            <div class="container" style="display: grid; place-items: center; min-height: calc(100vh - 120px);">
-                <div class="form-card" style="width: min(520px, 100%);">
+            <div class="container auth-shell">
+                <div class="form-card auth-card" style="width: min(520px, 100%);">
                     <span class="section-tag">Welcome back</span>
-                    <h1 style="margin: 12px 0 20px; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--secondary); letter-spacing: -0.05em;">Login</h1>
+                    <h1 class="section-title">Login</h1>
                     @include('layouts.flash')
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -56,7 +61,7 @@
                         </div>
 
                         <div class="form-actions" style="justify-content: space-between; align-items: center;">
-                            <label style="display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); font-size: 0.95rem;">
+                            <label class="check-inline">
                                 <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                 Remember me
                             </label>
@@ -68,6 +73,20 @@
             </div>
         </section>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var header = document.querySelector('.site-header');
+            var navToggle = document.querySelector('.nav-toggle');
+
+            if (header && navToggle) {
+                navToggle.addEventListener('click', function () {
+                    var isOpen = header.classList.toggle('nav-open');
+                    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 

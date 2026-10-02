@@ -8,7 +8,7 @@
     <title>Dashboard | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
@@ -26,6 +26,10 @@
                 @endforeach
                 <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
+
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
 
             <a href="{{ route('logout') }}" class="nav-cta" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -67,7 +71,7 @@
             <div class="container content-layout">
                 <div class="content-card">
                     <span class="section-tag">Upload files</span>
-                    <h2 style="margin: 0 0 18px; color: var(--secondary); letter-spacing: -0.05em; font-size: clamp(1.8rem, 3vw, 2.4rem);">Add documents</h2>
+                    <h2 class="section-title">Add documents</h2>
                     @include('layouts.flash')
                     <form action="{{ url('upload-files') }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -94,7 +98,7 @@
 
                 <aside class="info-panel">
                     <span class="section-tag" style="color: rgba(255,255,255,0.7);">Quick actions</span>
-                    <h3 style="margin: 0 0 18px; font-size: 2rem; letter-spacing: -0.05em;">Admin tools</h3>
+                    <h3 class="panel-title">Admin tools</h3>
                     <div class="form-actions" style="flex-direction: column; align-items: stretch;">
                         <a href="{{ url('category-create') }}" class="secondary-btn" style="background: rgba(255,255,255,0.08); color: white; border-color: rgba(255,255,255,0.16);">Add category</a>
                         <a href="{{ url('/category/show') }}" class="secondary-btn" style="background: rgba(255,255,255,0.08); color: white; border-color: rgba(255,255,255,0.16);">Manage categories</a>
@@ -107,7 +111,7 @@
             <div class="container">
                 <div class="content-card">
                     <span class="section-tag">Your uploads</span>
-                    <h2 style="margin: 0 0 18px; color: var(--secondary); letter-spacing: -0.05em; font-size: clamp(1.8rem, 3vw, 2.4rem);">Recent files</h2>
+                    <h2 class="section-title">Recent files</h2>
                     <div class="table-wrap">
                         <table class="data-table">
                             <thead>
@@ -162,6 +166,20 @@
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var header = document.querySelector('.site-header');
+            var navToggle = document.querySelector('.nav-toggle');
+
+            if (header && navToggle) {
+                navToggle.addEventListener('click', function () {
+                    var isOpen = header.classList.toggle('nav-open');
+                    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 

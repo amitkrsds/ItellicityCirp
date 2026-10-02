@@ -7,7 +7,7 @@
     <title>Manage categories | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
@@ -25,6 +25,10 @@
                 @endforeach
                 <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
+
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
 
             <a href="{{ url('/home') }}" class="nav-cta">Dashboard</a>
         </div>
@@ -89,5 +93,19 @@
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var header = document.querySelector('.site-header');
+            var navToggle = document.querySelector('.nav-toggle');
+
+            if (header && navToggle) {
+                navToggle.addEventListener('click', function () {
+                    var isOpen = header.classList.toggle('nav-open');
+                    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

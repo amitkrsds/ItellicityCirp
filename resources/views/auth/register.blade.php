@@ -7,7 +7,7 @@
     <title>Register | {{ config('constant.web_name') ?? 'Claim Bridge' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="{{ asset('css/modern-ui.css') }}" rel="stylesheet">
 </head>
@@ -21,21 +21,26 @@
                 <a href="{{ url('/') }}">HOME</a>
                 <a href="{{ url('contact-us') }}">CONTACT</a>
             </nav>
+
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
             <a href="{{ route('login') }}" class="nav-cta">Login</a>
         </div>
     </header>
 
     <main>
         <section class="section-shell">
-            <div class="container" style="display: grid; place-items: center; min-height: calc(100vh - 120px);">
-                <div class="form-card" style="width: min(620px, 100%);">
+            <div class="container auth-shell">
+                <div class="form-card auth-card">
                     <span class="section-tag">Create account</span>
-                    <h1 style="margin: 12px 0 20px; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--secondary); letter-spacing: -0.05em;">Register</h1>
+                    <h1 class="section-title">Register</h1>
                     @include('layouts.flash')
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 18px;">
+                        <div class="auth-grid">
                             <div class="field-group">
                                 <label for="name">Full name</label>
                                 <input id="name" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Your full name" class="@error('name') is-invalid @enderror">
@@ -57,7 +62,7 @@
                             </div>
                         </div>
 
-                        <div class="form-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 18px;">
+                        <div class="auth-grid">
                             <div class="field-group">
                                 <label for="password">Password</label>
                                 <input id="password" type="password" name="password" required autocomplete="new-password" placeholder="Enter password" class="@error('password') is-invalid @enderror">
@@ -79,14 +84,28 @@
                         </div>
                     </form>
 
-                    <div style="margin-top: 22px; text-align: center; color: var(--text-soft); font-size: 0.96rem;">
+                    <div class="text-muted" style="margin-top: 22px; text-align: center; font-size: 0.96rem;">
                         Already have an account?
-                        <a href="{{ route('login') }}" style="color: var(--primary-dark); font-weight: 700;">Sign in</a>
+                        <a href="{{ route('login') }}" class="muted-link">Sign in</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var header = document.querySelector('.site-header');
+            var navToggle = document.querySelector('.nav-toggle');
+
+            if (header && navToggle) {
+                navToggle.addEventListener('click', function () {
+                    var isOpen = header.classList.toggle('nav-open');
+                    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 
