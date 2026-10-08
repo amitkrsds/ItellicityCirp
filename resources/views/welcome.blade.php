@@ -133,12 +133,13 @@
                 </div>
             </div>
             <div class="footer-services">
-                <span class="section-tag" style="color: rgba(255,255,255,0.8);">Services</span>
-                <div class="service-links">
-                    @foreach($categories as $category)
-                        <a href="{{ url('category/show', [$category->id]) }}">{{ $category->name }}</a>
-                    @endforeach
-                </div>
+                 <h3 class="panel-title">Important link</h3>
+                    <ul>
+                        <li><a href="https://nclt.gov.in/" target="_blank" rel="noopener noreferrer">NCLT</a></li>
+                        <li><a href="https://nclat.nic.in/" target="_blank" rel="noopener noreferrer">NCLAT</a></li>
+                        <li><a href="https://ibbi.gov.in/" target="_blank" rel="noopener noreferrer">IBBI</a></li>
+                        <li><a href="https://www.pollbag.com/" target="_blank" rel="noopener noreferrer">E-Voting Poll bag</a></li>
+                    </ul>
             </div>
             <div class="copyright">© {{ date('Y') }} {{ config('constant.web_name') ?? 'Claim Bridge' }}. All rights reserved.</div>
         </div>

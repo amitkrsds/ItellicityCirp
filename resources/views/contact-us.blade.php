@@ -20,9 +20,6 @@
 
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="{{ url('/') }}">HOME</a>
-                @foreach($categories as $category)
-                    <a href="{{ url('category/show', [$category->id]) }}">{{ strtoupper($category->name) }}</a>
-                @endforeach
                 <a href="{{ url('contact-us') }}" class="is-active">CONTACT</a>
             </nav>
 
@@ -103,9 +100,7 @@
                             IBBI/IPA-001/IP-P00055/2017-18/10133
                         </p>
                         <p>
-                            <strong>Registered Address</strong><br>
-                            JD 2C, 2nd Floor, Pitampura,<br>
-                            New Delhi, Delhi – 110034
+                            <strong>Registered Address</strong><br>109, Surya Kiran Building, 19 KG Marg, Connaught Place, New Delhi 110 001
                         </p>
                         <p>
                             <strong>Email</strong><br>
@@ -116,13 +111,7 @@
 
                 <aside class="info-panel">
                     <span class="section-tag" style="color: rgba(255,255,255,0.7);">Important communication</span>
-                    <h3 class="panel-title">Stakeholder guidance</h3>
-                    <p>For matters concerning the CIRP of Intellicity Business Park Private Limited, stakeholders are requested to communicate through the appropriate email address mentioned above.</p>
-                    <ul>
-                        <li>Use the official process email for CIRP communications.</li>
-                        <li>Contact the authorised representative for homebuyer-related coordination.</li>
-                        <li>Provide complete details to ensure proper processing of your query.</li>
-                    </ul>
+                   
                 </aside>
             </div>
         </section>
